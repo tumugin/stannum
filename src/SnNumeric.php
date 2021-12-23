@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Tumugin\Stannum;
 
@@ -7,7 +8,10 @@ abstract class SnNumeric
     /** @var int|float $_value */
     protected $_value;
 
-    protected function __construct(int $_value)
+    /**
+     * @param int|float $_value
+     */
+    protected function __construct($_value)
     {
         $this->_value = $_value;
     }
