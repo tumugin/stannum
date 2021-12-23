@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Tumugin\Stannum;
 
 use Assert\Assertion;
+use Assert\AssertionFailedException;
 
 class SnString
 {
@@ -14,6 +15,9 @@ class SnString
         $this->value = $value;
     }
 
+    /**
+     * @throws AssertionFailedException
+     */
     public function fromString(string $value): SnString
     {
         $convertedString = mb_convert_encoding($value, 'UTF-8', 'auto');

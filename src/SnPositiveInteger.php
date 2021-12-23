@@ -14,10 +14,10 @@ class SnPositiveInteger extends SnInteger
     public static function byString(string $value): SnPositiveInteger
     {
         Assertion::true(filter_var($value, FILTER_VALIDATE_INT), 'Input value is not valid integer.');
-        $parsed_value = intval($value);
-        Assertion::greaterThan($parsed_value, 0, 'Value must be greater than 0.');
+        $parsedValue = intval($value);
+        Assertion::greaterThan($parsedValue, 0, 'Value must be greater than 0.');
 
-        return new SnPositiveInteger($parsed_value);
+        return new SnPositiveInteger($parsedValue);
     }
 
     /**
