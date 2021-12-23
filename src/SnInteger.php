@@ -5,15 +5,8 @@ namespace Tumugin\Stannum;
 
 use Assert\Assertion;
 
-class SnInteger
+class SnInteger extends SnNumeric
 {
-    private int $_value;
-
-    protected function __construct(int $_value)
-    {
-        $this->_value = $_value;
-    }
-
     public static function byString(string $value): SnInteger
     {
         Assertion::true(filter_var($value, FILTER_VALIDATE_INT), 'Input $value is not valid integer.');
@@ -26,33 +19,13 @@ class SnInteger
         return new SnInteger($value);
     }
 
-    public function toInt(): int
+    public function clone(): SnInteger
     {
-        return $this->_value;
+        return new SnInteger($this->_value);
     }
 
-    public function isEqual(SnInteger $sn_value): bool
+    public function abs(): SnInteger
     {
-        return $this->_value === $sn_value->_value;
-    }
-
-    public function isGreaterOrEqualThan(SnInteger $value): bool
-    {
-        return $this->_value >= $value->$value;
-    }
-
-    public function isGreaterThan(SnInteger $value): bool
-    {
-        return $this->_value > $value->$value;
-    }
-
-    public function lessOrEqualThan(SnInteger $value): bool
-    {
-        return $this->_value <= $value;
-    }
-
-    public function lessThan(SnInteger $value): bool
-    {
-        return $this->_value < $value;
+        return new SnInteger(abs($this->_value));
     }
 }
