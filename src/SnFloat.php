@@ -21,16 +21,16 @@ class SnFloat extends SnNumeric
 
     public function clone(): SnFloat
     {
-        return new SnFloat($this->_value);
+        return new SnFloat($this->value);
     }
 
     public function abs(): SnFloat
     {
-        return new SnFloat(abs($this->_value));
+        return new SnFloat(abs($this->value));
     }
 
     public function ceil(): SnFloat
     {
-        return new SnFloat(ceil($this->_value));
+        return new SnFloat(ceil($this->value));
     }
 }

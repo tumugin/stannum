@@ -21,11 +21,11 @@ class SnInteger extends SnNumeric
 
     public function clone(): SnInteger
     {
-        return new SnInteger($this->_value);
+        return new SnInteger($this->value);
     }
 
     public function abs(): SnInteger
     {
-        return new SnInteger(abs($this->_value));
+        return new SnInteger(abs($this->value));
     }
 }

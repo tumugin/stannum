@@ -10,7 +10,8 @@
     }
   ],
   "require": {
-    "beberlei/assert": "dev-master"
+    "beberlei/assert": "dev-master",
+    "ext-mbstring": "*"
   },
   "autoload": {
     "psr-4": {

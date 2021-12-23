@@ -5,15 +5,15 @@ namespace Tumugin\Stannum;
 
 abstract class SnNumeric
 {
-    /** @var int|float $_value */
-    protected $_value;
+    /** @var int|float $value */
+    protected $value;
 
     /**
      * @param int|float $_value
      */
     protected function __construct($_value)
     {
-        $this->_value = $_value;
+        $this->value = $_value;
     }
 
     public function __toString(): string
@@ -23,47 +23,47 @@ abstract class SnNumeric
 
     public function toString(): string
     {
-        return "{$this->_value}";
+        return "{$this->value}";
     }
 
     public function toInt(): int
     {
-        return (int)$this->_value;
+        return (int)$this->value;
     }
 
     public function toFloat(): float
     {
-        return (float)$this->_value;
+        return (float)$this->value;
     }
 
     public function isEqual(SnNumeric $value): bool
     {
-        return $this->_value === $value->_value;
+        return $this->value === $value->value;
     }
 
     public function isGreaterOrEqualThan(SnNumeric $value): bool
     {
-        return $this->_value >= $value->_value;
+        return $this->value >= $value->value;
     }
 
     public function isGreaterThan(SnNumeric $value): bool
     {
-        return $this->_value > $value->_value;
+        return $this->value > $value->value;
     }
 
     public function lessOrEqualThan(SnNumeric $value): bool
     {
-        return $this->_value <= $value->_value;
+        return $this->value <= $value->value;
     }
 
     public function lessThan(SnNumeric $value): bool
     {
-        return $this->_value < $value->_value;
+        return $this->value < $value->value;
     }
 
     public function isEven(): bool
     {
-        return $this->_value % 2 === 0;
+        return $this->value % 2 === 0;
     }
 
     public function isOdd(): bool
