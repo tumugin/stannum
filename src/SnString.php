@@ -18,12 +18,27 @@ class SnString
     /**
      * @throws AssertionFailedException
      */
-    public function fromString(string $value): SnString
+    public static function fromString(string $value): SnString
     {
         $convertedString = mb_convert_encoding($value, 'UTF-8', 'auto');
         Assertion::string($convertedString, 'Value is not valid string.');
 
         return new SnString(mb_convert_encoding($value, 'UTF-8', 'auto'));
+    }
+
+    public static function fromInt(int $value): SnString
+    {
+        return new SnString("{$value}");
+    }
+
+    public static function fromFloat(float $value): SnString
+    {
+        return new SnString("{$value}");
+    }
+
+    public function toString(): string
+    {
+        return $this->value;
     }
 
     public function length(): SnInteger
