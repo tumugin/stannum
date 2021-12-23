@@ -1,0 +1,20 @@
+{
+  "name": "tumugin/stannum",
+  "type": "library",
+  "minimum-stability": "dev",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "myskng",
+      "email": "myskng@myskng.xyz"
+    }
+  ],
+  "require": {
+    "beberlei/assert": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "Tumugin\\Stannum\\": "src/"
+    }
+  }
+}
