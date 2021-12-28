@@ -20,10 +20,8 @@ class SnString
      */
     public static function fromString(string $value): SnString
     {
-        $convertedString = mb_convert_encoding($value, 'UTF-8', 'auto');
-        Assertion::string($convertedString, 'Value is not valid string.');
-
-        return new SnString(mb_convert_encoding($value, 'UTF-8', 'auto'));
+        Assertion::same(mb_detect_encoding($value), 'UTF-8', 'Value must be valid UTF-8 string.');
+        return new SnString($value);
     }
 
     public static function fromInt(int $value): SnString
