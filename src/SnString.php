@@ -21,7 +21,11 @@ class SnString
      */
     public static function fromString(string $value): SnString
     {
-        Assertion::same(mb_detect_encoding($value), 'UTF-8', 'Value must be valid UTF-8 string.');
+        Assertion::inArray(
+            mb_detect_encoding($value),
+            ['UTF-8', 'ASCII'],
+            'Value must be valid UTF-8 string.'
+        );
         return new SnString($value);
     }
 
