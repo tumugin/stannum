@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tumugin\Stannum;
@@ -68,8 +69,8 @@ class SnList
     public function find(callable $callback)
     {
         return array_values(
-                array_filter($this->value, $callback)
-            )[0] ?? null;
+            array_filter($this->value, $callback)
+        )[0] ?? null;
     }
 
     public function get(int $index)
