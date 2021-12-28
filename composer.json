@@ -10,12 +10,20 @@
     }
   ],
   "require": {
-    "beberlei/assert": "dev-master",
+    "beberlei/assert": "^3.3.2",
     "ext-mbstring": "*"
   },
   "autoload": {
     "psr-4": {
       "Tumugin\\Stannum\\": "src/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tumugin\\Stannum\\Test\\": "test/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5.11"
   }
 }
