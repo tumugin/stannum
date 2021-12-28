@@ -64,9 +64,9 @@ class SnString
         return mb_check_encoding($this->value, 'ASCII');
     }
 
-    public function bytes(): array
+    public function bytes(): SnList
     {
-        return array_values(unpack('C*', $this->value));
+        return SnList::fromArrayStrict(array_values(unpack('C*', $this->value)));
     }
 
     public function capitalizeFirst(): SnString
@@ -86,9 +86,9 @@ class SnString
         return new SnString(mb_strtolower($this->value));
     }
 
-    public function chars(): array
+    public function chars(): SnList
     {
-        return mb_str_split($this->value);
+        return SnList::fromArrayStrict(mb_str_split($this->value));
     }
 
     public function trim(): SnString
