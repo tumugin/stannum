@@ -11,7 +11,6 @@ class ContainsTest extends TestCase
 {
     /**
      * @dataProvider providesTestStrings
-     * @return void
      */
     public function testWithStrings(string $initString, string $containsString, bool $expected): void
     {
