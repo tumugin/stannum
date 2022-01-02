@@ -59,9 +59,14 @@ class SnString
         return new SnString($this->value . $value->value);
     }
 
-    public function contains(SnString $value): bool
+    public function contains(SnString $needle): bool
     {
-        return mb_strpos($this->value, $value->value) !== false;
+        // workaround: PHP7.4 with empty needle will return error
+        if ($needle->value === '') {
+            return true;
+        }
+
+        return mb_strpos($this->value, $needle->value) !== false;
     }
 
     public function isAsciiOnly(): bool
