@@ -35,7 +35,7 @@ class SnList
             $types[] = gettype($v);
         }
         Assertion::true(
-            count(array_unique($types)) === 1,
+            count(array_unique($types)) <= 1,
             'Base array contains multiple types.'
         );
 
