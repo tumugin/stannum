@@ -118,6 +118,11 @@ class SnString
 
     public function startsWith(SnString $needle): bool
     {
+        // workaround: PHP7.4 with empty needle will return error
+        if ($needle->value === '') {
+            return true;
+        }
+
         return mb_strpos($this->value, $needle->value) === 0;
     }
 
