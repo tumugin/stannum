@@ -54,11 +54,18 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
         return SnInteger::byInt(count($this->value));
     }
 
-    public function concat(SnList $value): SnList
+    public function concat(SnList ...$value): SnList
     {
-        return new SnList([...$this->value, ...$value->value]);
+        $mergedArray = [...$this->value];
+        foreach ($value as $snList) {
+            $mergedArray = [...$mergedArray, ...$snList->value];
+        }
+        return new SnList($mergedArray);
     }
 
+    /**
+     * @param callable(mixed): bool $callback
+     */
     public function filter(callable $callback): SnList
     {
         return new SnList(
@@ -68,6 +75,9 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
         );
     }
 
+    /**
+     * @param callable(mixed): bool $callback
+     */
     public function find(callable $callback)
     {
         return array_values(
@@ -116,6 +126,9 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
         return $this->value[count($this->value) - 1];
     }
 
+    /**
+     * @param callable(mixed): mixed $callback
+     */
     public function map(callable $callback): SnList
     {
         return new SnList(
@@ -125,6 +138,9 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
         );
     }
 
+    /**
+     * @param callable(mixed): mixed $callback
+     */
     public function sort(callable $callback): SnList
     {
         $shallowCopyOfArray = $this->value;
