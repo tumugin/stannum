@@ -1,5 +1,13 @@
 name: Testing stannum
-on: [ push, pull_request ]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
 jobs:
   phpunit:
     name: PHPUnit (PHP ${{ matrix.php-versions }} on ${{ matrix.operating-system }})
