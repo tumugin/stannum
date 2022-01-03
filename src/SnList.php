@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Tumugin\Stannum;
 
+use ArrayIterator;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
+use Exception;
 
-class SnList
+class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
 {
     protected array $value;
 
@@ -52,11 +54,18 @@ class SnList
         return SnInteger::byInt(count($this->value));
     }
 
-    public function concat(SnList $value): SnList
+    public function concat(SnList ...$value): SnList
     {
-        return new SnList([...$this->value, ...$value->value]);
+        $mergedArray = [...$this->value];
+        foreach ($value as $snList) {
+            $mergedArray = [...$mergedArray, ...$snList->value];
+        }
+        return new SnList($mergedArray);
     }
 
+    /**
+     * @param callable(mixed): bool $callback
+     */
     public function filter(callable $callback): SnList
     {
         return new SnList(
@@ -66,6 +75,9 @@ class SnList
         );
     }
 
+    /**
+     * @param callable(mixed): bool $callback
+     */
     public function find(callable $callback)
     {
         return array_values(
@@ -73,8 +85,13 @@ class SnList
         )[0] ?? null;
     }
 
+    /**
+     * @throws AssertionFailedException
+     */
     public function get(int $index)
     {
+        Assertion::keyIsset($this->value, $index);
+
         return $this->value[$index];
     }
 
@@ -114,6 +131,9 @@ class SnList
         return $this->value[count($this->value) - 1];
     }
 
+    /**
+     * @param callable(mixed): mixed $callback
+     */
     public function map(callable $callback): SnList
     {
         return new SnList(
@@ -123,10 +143,43 @@ class SnList
         );
     }
 
+    /**
+     * @param callable(mixed): mixed $callback
+     */
     public function sort(callable $callback): SnList
     {
         $shallowCopyOfArray = $this->value;
         usort($shallowCopyOfArray, $callback);
         return new SnList($shallowCopyOfArray);
+    }
+
+    public function count(): int
+    {
+        return $this->length()->toInt();
+    }
+
+    public function offsetExists($offset): bool
+    {
+        return isset($this->value[$offset]);
+    }
+
+    public function offsetGet($offset)
+    {
+        return $this->value[$offset] ?? null;
+    }
+
+    public function offsetSet($offset, $value)
+    {
+        throw new Exception('Set is now allow for immutable SnList.');
+    }
+
+    public function offsetUnset($offset)
+    {
+        throw new Exception('Unset is now allow for immutable SnList.');
+    }
+
+    public function getIterator()
+    {
+        return new ArrayIterator($this->value);
     }
 }
