@@ -85,8 +85,13 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
         )[0] ?? null;
     }
 
+    /**
+     * @throws AssertionFailedException
+     */
     public function get(int $index)
     {
+        Assertion::keyIsset($this->value, $index);
+
         return $this->value[$index];
     }
 
