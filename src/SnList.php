@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Tumugin\Stannum;
 
+use ArrayIterator;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
+use Exception;
 
-class SnList
+class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
 {
     protected array $value;
 
@@ -128,5 +130,35 @@ class SnList
         $shallowCopyOfArray = $this->value;
         usort($shallowCopyOfArray, $callback);
         return new SnList($shallowCopyOfArray);
+    }
+
+    public function count(): int
+    {
+        return $this->length()->toInt();
+    }
+
+    public function offsetExists($offset): bool
+    {
+        return isset($this->value[$offset]);
+    }
+
+    public function offsetGet($offset)
+    {
+        return $this->value[$offset] ?? null;
+    }
+
+    public function offsetSet($offset, $value)
+    {
+        throw new Exception('Set is now allow for immutable SnList.');
+    }
+
+    public function offsetUnset($offset)
+    {
+        throw new Exception('Unset is now allow for immutable SnList.');
+    }
+
+    public function getIterator()
+    {
+        return new ArrayIterator($this->value);
     }
 }
