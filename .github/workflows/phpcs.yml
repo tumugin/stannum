@@ -1,4 +1,4 @@
-name: Check code style of stannum
+name: lint
 on:
   push:
     branches:

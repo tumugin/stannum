@@ -1,4 +1,4 @@
-name: Testing stannum
+name: tests
 on:
   push:
     branches:
