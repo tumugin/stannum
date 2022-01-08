@@ -119,12 +119,18 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
         );
     }
 
+    /**
+     * @throws AssertionFailedException
+     */
     public function first()
     {
         Assertion::minCount($this->value, 1, 'Array must contain at least 1 item to access first element.');
         return $this->value[0];
     }
 
+    /**
+     * @throws AssertionFailedException
+     */
     public function last()
     {
         Assertion::minCount($this->value, 1, 'Array must contain at least 1 item to access last element.');
