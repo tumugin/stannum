@@ -10,7 +10,7 @@ class SnFloat extends SnNumeric
 {
     public static function byString(string $value): SnFloat
     {
-        Assertion::true(filter_var($value, FILTER_VALIDATE_FLOAT), 'Input $value is not valid float.');
+        Assertion::true(is_numeric($value), 'Input $value is not valid float.');
 
         return new SnFloat(floatval($value));
     }
@@ -20,9 +20,9 @@ class SnFloat extends SnNumeric
         return new SnFloat((float)$value);
     }
 
-    public function clone(): SnFloat
+    public static function byFloat(float $value): SnFloat
     {
-        return new SnFloat($this->value);
+        return new SnFloat($value);
     }
 
     public function abs(): SnFloat
