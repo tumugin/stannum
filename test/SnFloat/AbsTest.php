@@ -9,7 +9,7 @@ use Tumugin\Stannum\SnFloat;
 
 class AbsTest extends TestCase
 {
-    public function testAbs()
+    public function testAbs(): void
     {
         $this->assertSame(10.5, SnFloat::byFloat(-10.5)->abs()->toFloat());
     }
