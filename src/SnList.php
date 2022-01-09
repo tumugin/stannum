@@ -150,7 +150,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     }
 
     /**
-     * @param callable(mixed): mixed $callback
+     * @param callable(mixed, mixed): mixed $callback
      */
     public function sort(callable $callback): SnList
     {

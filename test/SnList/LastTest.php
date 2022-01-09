@@ -8,11 +8,11 @@ use Assert\AssertionFailedException;
 use PHPUnit\Framework\TestCase;
 use Tumugin\Stannum\SnList;
 
-class FirstTest extends TestCase
+class LastTest extends TestCase
 {
     public function testFirst(): void
     {
-        $this->assertSame('藍井すず', SnList::fromArray(['藍井すず', '藤宮めい'])->first());
+        $this->assertSame('藤宮めい', SnList::fromArray(['藍井すず', '藤宮めい'])->last());
     }
 
     public function testWithEmptyList(): void
