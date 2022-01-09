@@ -119,12 +119,18 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
         );
     }
 
+    /**
+     * @throws AssertionFailedException
+     */
     public function first()
     {
         Assertion::minCount($this->value, 1, 'Array must contain at least 1 item to access first element.');
         return $this->value[0];
     }
 
+    /**
+     * @throws AssertionFailedException
+     */
     public function last()
     {
         Assertion::minCount($this->value, 1, 'Array must contain at least 1 item to access last element.');
@@ -144,7 +150,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     }
 
     /**
-     * @param callable(mixed): mixed $callback
+     * @param callable(mixed, mixed): mixed $callback
      */
     public function sort(callable $callback): SnList
     {
@@ -165,7 +171,10 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
 
     public function offsetGet($offset)
     {
-        return $this->value[$offset] ?? null;
+        if (!isset($this->value[$offset])) {
+            throw new Exception('Index out of range.');
+        }
+        return $this->value[$offset];
     }
 
     public function offsetSet($offset, $value)
