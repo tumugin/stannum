@@ -171,7 +171,10 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
 
     public function offsetGet($offset)
     {
-        return $this->value[$offset] ?? null;
+        if (!isset($this->value[$offset])) {
+            throw new Exception('Index out of range.');
+        }
+        return $this->value[$offset];
     }
 
     public function offsetSet($offset, $value)
