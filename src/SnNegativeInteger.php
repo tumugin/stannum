@@ -14,7 +14,8 @@ class SnNegativeInteger extends SnInteger
      */
     public static function byString(string $value): SnNegativeInteger
     {
-        Assertion::true(filter_var($value, FILTER_VALIDATE_INT), 'Input value is not valid integer.');
+        Assertion::true(is_numeric($value), 'Input $value is not valid integer.');
+
         $parsed_value = intval($value);
         Assertion::lessThan($parsed_value, 0, 'Value must be less than 0.');
 
