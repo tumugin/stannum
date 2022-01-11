@@ -52,12 +52,12 @@ abstract class SnNumeric
         return $this->value > $value->value;
     }
 
-    public function lessOrEqualThan(SnNumeric $value): bool
+    public function isLessOrEqualThan(SnNumeric $value): bool
     {
         return $this->value <= $value->value;
     }
 
-    public function lessThan(SnNumeric $value): bool
+    public function isLessThan(SnNumeric $value): bool
     {
         return $this->value < $value->value;
     }
