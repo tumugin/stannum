@@ -24,6 +24,12 @@ class SnStringList extends SnList
         return parent::fromArrayStrictWithType($value, SnString::class);
     }
 
+    public static function fromArrayStrictWithType(array $value, string $type): SnList
+    {
+        Assertion::same($type, SnString::class, '$type must be SnString');
+        return parent::fromArrayStrictWithType($value, $type);
+    }
+
     /**
      * @param SnString $needle
      * @throws AssertionFailedException

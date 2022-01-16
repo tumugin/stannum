@@ -43,6 +43,7 @@ class FromArrayStrictWithTypeTest extends TestCase
     public function provideSuccessfulCase(): array
     {
         return [
+            [[], 'string'],
             [['藤宮めい'], 'string'],
             [[SnString::fromString('藤宮めい')], SnString::class],
         ];
