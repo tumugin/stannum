@@ -44,6 +44,24 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
         return new SnList(array_values($value));
     }
 
+    /**
+     * @throws AssertionFailedException
+     */
+    public static function fromArrayStrictWithType(array $value, string $type): SnList
+    {
+        foreach ($value as $v) {
+            if (gettype($v) === 'object') {
+                $actualType = get_class($v);
+            } else {
+                $actualType = gettype($v);
+            }
+
+            Assertion::same($actualType, $type, "value in array must be type of {$type}");
+        }
+
+        return new SnList(array_values($value));
+    }
+
     public function toArray(): array
     {
         return $this->value;
