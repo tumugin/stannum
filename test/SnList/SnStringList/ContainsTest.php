@@ -30,7 +30,15 @@ class ContainsTest extends TestCase
                     SnString::fromString('藍井すず'),
                     SnString::fromString('藤宮めい'),
                 ]),
-                SnString::fromString('藍井すず')
+                SnString::fromString('藍井すず'),
+            ],
+            [
+                false,
+                SnStringList::fromArray([
+                    SnString::fromString('藍井すず'),
+                    SnString::fromString('藤宮めい'),
+                ]),
+                SnString::fromString('工藤のか'),
             ]
         ];
     }
