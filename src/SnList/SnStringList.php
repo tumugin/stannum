@@ -14,20 +14,20 @@ class SnStringList extends SnList
     /**
      * @throws AssertionFailedException
      */
-    public static function fromArray(array $value): SnList
+    public static function fromArray(array $value): SnStringList
     {
-        return parent::fromArrayStrictWithType($value, SnString::class);
+        return new SnStringList(parent::fromArrayStrictWithType($value, SnString::class)->toArray());
     }
 
-    public static function fromArrayStrict(array $value): SnList
+    public static function fromArrayStrict(array $value): SnStringList
     {
-        return parent::fromArrayStrictWithType($value, SnString::class);
+        return new SnStringList(parent::fromArrayStrictWithType($value, SnString::class)->toArray());
     }
 
-    public static function fromArrayStrictWithType(array $value, string $type): SnList
+    public static function fromArrayStrictWithType(array $value, string $type): SnStringList
     {
         Assertion::same($type, SnString::class, '$type must be SnString');
-        return parent::fromArrayStrictWithType($value, $type);
+        return new SnStringList(parent::fromArrayStrictWithType($value, $type)->toArray());
     }
 
     /**
@@ -41,6 +41,10 @@ class SnStringList extends SnList
             '$needle must be type of SnString'
         );
 
-        return in_array($needle, $this->value, true);
+        return in_array(
+            $needle->toString(),
+            $this->map(fn(SnString $snString) => $snString->toString())->toArray(),
+            true
+        );
     }
 }
