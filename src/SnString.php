@@ -16,6 +16,11 @@ class SnString
         $this->value = $value;
     }
 
+    public function __toString(): string
+    {
+        return $this->toString();
+    }
+
     /**
      * @throws AssertionFailedException
      */
