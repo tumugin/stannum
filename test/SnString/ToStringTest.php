@@ -9,12 +9,12 @@ use Tumugin\Stannum\SnString;
 
 class ToStringTest extends TestCase
 {
-    public function testToString()
+    public function testToString(): void
     {
         $this->assertSame('藍井すず', SnString::fromString('藍井すず')->toString());
     }
 
-    public function testPHPToString()
+    public function testPHPToString(): void
     {
         $snString = SnString::fromString('藍井すず');
         $this->assertSame('藍井すず', "{$snString}");
