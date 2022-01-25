@@ -7,6 +7,7 @@ namespace Tumugin\Stannum\SnList;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Tumugin\Stannum\SnInteger;
+use Tumugin\Stannum\SnList;
 
 class SnIntegerList extends SnNumericList
 {
@@ -27,6 +28,16 @@ class SnIntegerList extends SnNumericList
     {
         Assertion::same($type, SnInteger::class, '$type must be SnInteger');
         return new SnIntegerList(parent::fromArrayStrictWithType($value, $type)->toArray());
+    }
+
+    /**
+     * @param int[] $value
+     */
+    public static function fromIntArray(array $value): SnIntegerList
+    {
+        return new SnIntegerList(
+            SnList::fromArrayStrictWithType($value, 'integer')->toArray()
+        );
     }
 
     public function total(): SnInteger
