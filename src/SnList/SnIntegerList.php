@@ -36,18 +36,25 @@ class SnIntegerList extends SnNumericList
     public static function fromIntArray(array $value): SnIntegerList
     {
         return new SnIntegerList(
-            SnList::fromArrayStrictWithType($value, 'integer')->toArray()
+            SnList::fromArrayStrictWithType($value, 'integer')
+                ->map(fn(int $v) => SnInteger::byInt($v))
+                ->toArray()
         );
+    }
+
+    /**
+     * @return int[]
+     */
+    public function toIntArray(): array
+    {
+        return $this
+            ->map(fn(SnInteger $v) => $v->toInt())
+            ->toArray();
     }
 
     public function total(): SnInteger
     {
         return parent::total();
-    }
-
-    public function average(): SnInteger
-    {
-        return parent::average();
     }
 
     public function max(): SnInteger

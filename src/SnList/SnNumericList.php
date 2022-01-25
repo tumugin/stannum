@@ -15,7 +15,11 @@ abstract class SnNumericList extends SnList
      */
     public function total()
     {
-        $result = array_sum($this->toArray());
+        $result = array_sum(
+            $this
+                ->map(fn($v) => get_class($v) === SnFloat::class ? $v->toFloat() : $v->toInt())
+                ->toArray()
+        );
         return $this->convertFloatOrIntegerToSnTypes($result);
     }
 
@@ -24,7 +28,12 @@ abstract class SnNumericList extends SnList
      */
     public function average()
     {
-        $result = array_sum($this->toArray()) / count($this->toArray());
+        $sum = array_sum(
+            $this
+                ->map(fn($v) => get_class($v) === SnFloat::class ? $v->toFloat() : $v->toInt())
+                ->toArray()
+        );
+        $result = (float)$sum / count($this->toArray());
         return $this->convertFloatOrIntegerToSnTypes($result);
     }
 
@@ -33,13 +42,21 @@ abstract class SnNumericList extends SnList
      */
     public function max()
     {
-        $result = max($this->toArray());
+        $result = max(
+            $this
+                ->map(fn($v) => get_class($v) === SnFloat::class ? $v->toFloat() : $v->toInt())
+                ->toArray()
+        );
         return $this->convertFloatOrIntegerToSnTypes($result);
     }
 
     public function min()
     {
-        $result = min($this->toArray());
+        $result = min(
+            $this
+                ->map(fn($v) => get_class($v) === SnFloat::class ? $v->toFloat() : $v->toInt())
+                ->toArray()
+        );
         return $this->convertFloatOrIntegerToSnTypes($result);
     }
 
@@ -52,6 +69,7 @@ abstract class SnNumericList extends SnList
         switch (gettype($result)) {
             case 'integer':
                 return SnInteger::byInt($result);
+            case 'double':
             case 'float':
                 return SnFloat::byFloat($result);
             default:

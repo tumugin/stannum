@@ -14,7 +14,7 @@ class FromIntArrayTest extends TestCase
     {
         $this->assertSame(
             [1, 2, 3],
-            SnIntegerList::fromIntArray([1, 2, 3])->toArray()
+            SnIntegerList::fromIntArray([1, 2, 3])->toIntArray()
         );
     }
 
