@@ -10,7 +10,7 @@ use Tumugin\Stannum\SnList\SnIntegerList;
 
 class FromIntArrayTest extends TestCase
 {
-    public function testFromIntArray()
+    public function testFromIntArray(): void
     {
         $this->assertSame(
             [1, 2, 3],
@@ -18,7 +18,7 @@ class FromIntArrayTest extends TestCase
         );
     }
 
-    public function testWrongTypeArray()
+    public function testWrongTypeArray(): void
     {
         $this->expectException(AssertionFailedException::class);
         SnIntegerList::fromIntArray(['藍井すず', 1, 2, 3]);

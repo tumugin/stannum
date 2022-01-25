@@ -9,7 +9,7 @@ use Tumugin\Stannum\SnList\SnIntegerList;
 
 class MaxTest extends TestCase
 {
-    public function testMax()
+    public function testMax(): void
     {
         $this->assertSame(
             100,
