@@ -70,7 +70,6 @@ abstract class SnNumericList extends SnList
             case 'integer':
                 return SnInteger::byInt($result);
             case 'double':
-            case 'float':
                 return SnFloat::byFloat($result);
             default:
                 throw new \Exception('unhandled type.');
