@@ -37,6 +37,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     /**
      * Creates SnList instance by native array which includes single type.
      *
+     * @param array $value Base array
      * @throws AssertionFailedException
      */
     public static function fromArrayStrict(array $value): self
@@ -60,6 +61,8 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     /**
      * Creates SnList instance by native array which includes only one specified type.
      *
+     * @param array $value Base array
+     * @param string $type type of value
      * @throws AssertionFailedException
      */
     public static function fromArrayStrictWithType(array $value, string $type): self
