@@ -178,8 +178,6 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
 
     /**
      * Returns the unique list
-     *
-     * @return $this
      */
     public function distinct(): self
     {
@@ -253,7 +251,6 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      * Returns offset exists in list
      *
      * @param int $offset Offset value
-     * @return bool
      */
     public function offsetExists($offset): bool
     {

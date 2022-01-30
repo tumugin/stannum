@@ -95,7 +95,6 @@ class SnString
      * Concat specified value and return new SnString instance.
      *
      * @param SnString $value Value to be combined
-     * @return $this
      */
     public function concat(self $value): self
     {
