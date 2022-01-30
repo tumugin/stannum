@@ -20,8 +20,8 @@ class ReplaceTest extends TestCase
     ): void {
         $this->assertSame(
             $expected,
-            SnString::fromString($testString)
-                ->replace(SnString::fromString($searchString), SnString::fromString($replaceString))
+            SnString::byString($testString)
+                ->replace(SnString::byString($searchString), SnString::byString($replaceString))
                 ->toString()
         );
     }

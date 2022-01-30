@@ -13,7 +13,7 @@ class TotalTest extends TestCase
     {
         $this->assertSame(
             10,
-            SnIntegerList::fromIntArray([5, 3, 2])->total()->toInt()
+            SnIntegerList::byIntArray([5, 3, 2])->total()->toInt()
         );
     }
 }

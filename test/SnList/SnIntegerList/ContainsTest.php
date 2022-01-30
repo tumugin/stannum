@@ -13,7 +13,7 @@ class ContainsTest extends TestCase
     public function testContainsTrue(): void
     {
         $this->assertTrue(
-            SnIntegerList::fromIntArray([1, 3, 2])
+            SnIntegerList::byIntArray([1, 3, 2])
                 ->contains(SnInteger::byInt(3))
         );
     }
@@ -21,7 +21,7 @@ class ContainsTest extends TestCase
     public function testContainsFalse(): void
     {
         $this->assertFalse(
-            SnIntegerList::fromIntArray([1, 3, 2])
+            SnIntegerList::byIntArray([1, 3, 2])
                 ->contains(SnInteger::byInt(100))
         );
     }

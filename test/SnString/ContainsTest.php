@@ -16,7 +16,7 @@ class ContainsTest extends TestCase
     {
         $this->assertSame(
             $expected,
-            SnString::fromString($initString)->contains(SnString::fromString($containsString))
+            SnString::byString($initString)->contains(SnString::byString($containsString))
         );
     }
 

@@ -12,7 +12,7 @@ class GetTest extends TestCase
 {
     public function testGet(): void
     {
-        $testList = SnList::fromArray([
+        $testList = SnList::byArray([
             '藍井すず',
             '藤宮めい',
             '橋本あみ',
@@ -23,7 +23,7 @@ class GetTest extends TestCase
     public function testGetWithOutOfIndex(): void
     {
         $this->expectException(AssertionFailedException::class);
-        $testList = SnList::fromArray([
+        $testList = SnList::byArray([
             '藍井すず',
             '藤宮めい',
             '橋本あみ',

@@ -13,7 +13,7 @@ class ContainsTest extends TestCase
     public function testContainsTrue(): void
     {
         $this->assertTrue(
-            SnFloatList::fromFloatArray([1.1, 3.3, 2.2])
+            SnFloatList::byFloatArray([1.1, 3.3, 2.2])
                 ->contains(SnFloat::byFloat(3.3))
         );
     }
@@ -21,7 +21,7 @@ class ContainsTest extends TestCase
     public function testContainsFalse(): void
     {
         $this->assertFalse(
-            SnFloatList::fromFloatArray([1.1, 3.3, 2.2])
+            SnFloatList::byFloatArray([1.1, 3.3, 2.2])
                 ->contains(SnFloat::byFloat(100.4))
         );
     }

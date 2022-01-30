@@ -12,12 +12,12 @@ class LastTest extends TestCase
 {
     public function testFirst(): void
     {
-        $this->assertSame('藤宮めい', SnList::fromArray(['藍井すず', '藤宮めい'])->last());
+        $this->assertSame('藤宮めい', SnList::byArray(['藍井すず', '藤宮めい'])->last());
     }
 
     public function testWithEmptyList(): void
     {
         $this->expectException(AssertionFailedException::class);
-        SnList::fromArray([])->first();
+        SnList::byArray([])->first();
     }
 }

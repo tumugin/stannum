@@ -16,9 +16,9 @@ class SnFloatList extends SnNumericList
      *
      * @throws AssertionFailedException
      */
-    public static function fromArray(array $value): self
+    public static function byArray(array $value): self
     {
-        return new static(parent::fromArrayStrictWithType($value, SnFloat::class)->toArray());
+        return new static(parent::byArrayStrictWithType($value, SnFloat::class)->toArray());
     }
 
     /**
@@ -27,9 +27,9 @@ class SnFloatList extends SnNumericList
      * @param SnFloat[] $value Base array
      * @throws AssertionFailedException
      */
-    public static function fromArrayStrict(array $value): self
+    public static function byArrayStrict(array $value): self
     {
-        return new static(parent::fromArrayStrictWithType($value, SnFloat::class)->toArray());
+        return new static(parent::byArrayStrictWithType($value, SnFloat::class)->toArray());
     }
 
     /**
@@ -40,10 +40,10 @@ class SnFloatList extends SnNumericList
      * @return SnFloatList
      * @throws AssertionFailedException
      */
-    public static function fromArrayStrictWithType(array $value, string $type): self
+    public static function byArrayStrictWithType(array $value, string $type): self
     {
         Assertion::same($type, SnFloat::class, '$type must be SnInteger');
-        return new static(parent::fromArrayStrictWithType($value, $type)->toArray());
+        return new static(parent::byArrayStrictWithType($value, $type)->toArray());
     }
 
     /**
@@ -52,10 +52,10 @@ class SnFloatList extends SnNumericList
      * @param float[] $value
      * @throws AssertionFailedException
      */
-    public static function fromFloatArray(array $value): self
+    public static function byFloatArray(array $value): self
     {
         return new self(
-            SnList::fromArrayStrictWithType($value, 'double')
+            SnList::byArrayStrictWithType($value, 'double')
                 ->map(fn(float $v) => SnFloat::byFloat($v))
                 ->toArray()
         );

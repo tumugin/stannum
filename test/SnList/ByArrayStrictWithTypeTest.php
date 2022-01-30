@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use Tumugin\Stannum\SnList;
 use Tumugin\Stannum\SnString;
 
-class FromArrayStrictWithTypeTest extends TestCase
+class ByArrayStrictWithTypeTest extends TestCase
 {
     /**
      * @dataProvider provideErrorCase
@@ -17,7 +17,7 @@ class FromArrayStrictWithTypeTest extends TestCase
     public function testWithErrorCase(array $testArray, string $expectedType): void
     {
         $this->expectException(AssertionFailedException::class);
-        SnList::fromArrayStrictWithType($testArray, $expectedType);
+        SnList::byArrayStrictWithType($testArray, $expectedType);
     }
 
     public function provideErrorCase(): array
@@ -33,7 +33,7 @@ class FromArrayStrictWithTypeTest extends TestCase
      */
     public function testWithSuccessfulCase(array $testArray, string $expectedType): void
     {
-        $snList = SnList::fromArrayStrictWithType($testArray, $expectedType);
+        $snList = SnList::byArrayStrictWithType($testArray, $expectedType);
         $this->assertCount(
             count($testArray),
             $snList->toArray()
@@ -45,7 +45,7 @@ class FromArrayStrictWithTypeTest extends TestCase
         return [
             [[], 'string'],
             [['藤宮めい'], 'string'],
-            [[SnString::fromString('藤宮めい')], SnString::class],
+            [[SnString::byString('藤宮めい')], SnString::class],
         ];
     }
 }

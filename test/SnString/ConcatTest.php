@@ -16,8 +16,8 @@ class ConcatTest extends TestCase
     {
         $this->assertSame(
             $expected,
-            SnString::fromString($initialString)->concat(
-                SnString::fromString($concatString)
+            SnString::byString($initialString)->concat(
+                SnString::byString($concatString)
             )->toString()
         );
     }

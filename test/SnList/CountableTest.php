@@ -11,7 +11,7 @@ class CountableTest extends TestCase
 {
     public function testCount(): void
     {
-        $testArray = SnList::fromArray([
+        $testArray = SnList::byArray([
             '橋本あみ',
             '工藤のか',
             '藍井すず',
@@ -25,7 +25,7 @@ class CountableTest extends TestCase
 
     public function testWithStandardCount(): void
     {
-        $testArray = SnList::fromArray([
+        $testArray = SnList::byArray([
             '橋本あみ',
             '工藤のか',
             '藍井すず',

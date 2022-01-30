@@ -11,7 +11,7 @@ class LengthTest extends TestCase
 {
     public function testLength(): void
     {
-        $this->assertSame(7, SnList::fromArray([
+        $this->assertSame(7, SnList::byArray([
             '橋本あみ',
             '工藤のか',
             '藍井すず',

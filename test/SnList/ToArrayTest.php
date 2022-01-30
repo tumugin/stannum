@@ -21,7 +21,7 @@ class ToArrayTest extends TestCase
                 '永堀ゆめ',
                 '朝比奈れい',
             ],
-            SnList::fromArray([
+            SnList::byArray([
                 '橋本あみ',
                 '工藤のか',
                 '藍井すず',

@@ -11,11 +11,11 @@ class IsEmptyTest extends TestCase
 {
     public function testIsEmptyWithEmptyArray(): void
     {
-        $this->assertTrue(SnList::fromArray([])->isEmpty());
+        $this->assertTrue(SnList::byArray([])->isEmpty());
     }
 
     public function testIsEmptyWithNotEmptyArray(): void
     {
-        $this->assertFalse(SnList::fromArray(['藍井すず'])->isEmpty());
+        $this->assertFalse(SnList::byArray(['藍井すず'])->isEmpty());
     }
 }

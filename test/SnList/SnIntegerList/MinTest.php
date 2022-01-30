@@ -13,7 +13,7 @@ class MinTest extends TestCase
     {
         $this->assertSame(
             10,
-            SnIntegerList::fromIntArray([50, 10, 100])->min()->toInt()
+            SnIntegerList::byIntArray([50, 10, 100])->min()->toInt()
         );
     }
 }

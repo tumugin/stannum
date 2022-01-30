@@ -14,7 +14,7 @@ class CapitalizeAllTest extends TestCase
      */
     public function testWithStrings(string $testString, string $expected): void
     {
-        $actual = SnString::fromString($testString)->capitalizeAll()->toString();
+        $actual = SnString::byString($testString)->capitalizeAll()->toString();
         $this->assertSame($expected, $actual);
     }
 

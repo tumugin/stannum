@@ -14,7 +14,7 @@ class CharsTest extends TestCase
      */
     public function testChars(string $testString, array $expected): void
     {
-        $actual = SnString::fromString($testString)->chars()->toArray();
+        $actual = SnString::byString($testString)->chars()->toArray();
         $this->assertSame($expected, $actual);
     }
 

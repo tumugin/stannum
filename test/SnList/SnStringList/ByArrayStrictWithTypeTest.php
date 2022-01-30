@@ -10,32 +10,32 @@ use Tumugin\Stannum\SnInteger;
 use Tumugin\Stannum\SnList\SnStringList;
 use Tumugin\Stannum\SnString;
 
-class FromArrayStrictWithTypeTest extends TestCase
+class ByArrayStrictWithTypeTest extends TestCase
 {
-    public function testFromArrayStrictWithType(): void
+    public function testByArrayStrictWithType(): void
     {
-        $testSnString = SnString::fromString('藍井すず');
+        $testSnString = SnString::byString('藍井すず');
         $testSnStringArray = [$testSnString];
-        $snStringList = SnStringList::fromArrayStrictWithType(
+        $snStringList = SnStringList::byArrayStrictWithType(
             $testSnStringArray,
             SnString::class
         );
         $this->assertSame($testSnStringArray, $snStringList->toArray());
     }
 
-    public function testFromArrayStrictWithTypeWithWrongType(): void
+    public function testByArrayStrictWithTypeWithWrongType(): void
     {
         $this->expectException(AssertionFailedException::class);
-        SnStringList::fromArrayStrictWithType(
-            [SnString::fromString('藍井すず')],
+        SnStringList::byArrayStrictWithType(
+            [SnString::byString('藍井すず')],
             SnInteger::class
         );
     }
 
-    public function testFromArrayStrictWithTypeWithWrongArray(): void
+    public function testByArrayStrictWithTypeWithWrongArray(): void
     {
         $this->expectException(AssertionFailedException::class);
-        SnStringList::fromArrayStrictWithType(
+        SnStringList::byArrayStrictWithType(
             ['藍井すず'],
             SnString::class
         );

@@ -9,13 +9,13 @@ use PHPUnit\Framework\TestCase;
 use Tumugin\Stannum\SnInteger;
 use Tumugin\Stannum\SnList\SnIntegerList;
 
-class FromArrayTest extends TestCase
+class ByArrayTest extends TestCase
 {
-    public function testFromArray(): void
+    public function testByArray(): void
     {
         $this->assertSame(
             [1, 2, 3],
-            SnIntegerList::fromArray([
+            SnIntegerList::byArray([
                 SnInteger::byInt(1),
                 SnInteger::byInt(2),
                 SnInteger::byInt(3),
@@ -25,11 +25,11 @@ class FromArrayTest extends TestCase
         );
     }
 
-    public function testFromArrayStrict(): void
+    public function testByArrayStrict(): void
     {
         $this->assertSame(
             [1, 2, 3],
-            SnIntegerList::fromArrayStrict([
+            SnIntegerList::byArrayStrict([
                 SnInteger::byInt(1),
                 SnInteger::byInt(2),
                 SnInteger::byInt(3),
@@ -39,11 +39,11 @@ class FromArrayTest extends TestCase
         );
     }
 
-    public function testFromArrayStrictWithType(): void
+    public function testByArrayStrictWithType(): void
     {
         $this->assertSame(
             [1, 2, 3],
-            SnIntegerList::fromArrayStrictWithType(
+            SnIntegerList::byArrayStrictWithType(
                 [
                     SnInteger::byInt(1),
                     SnInteger::byInt(2),
@@ -59,28 +59,28 @@ class FromArrayTest extends TestCase
     /**
      * @dataProvider providesErrorCases
      */
-    public function testFromArrayErrorCase(array $fromValue): void
+    public function testByArrayErrorCase(array $fromValue): void
     {
         $this->expectException(AssertionFailedException::class);
-        SnIntegerList::fromArray($fromValue);
+        SnIntegerList::byArray($fromValue);
     }
 
     /**
      * @dataProvider providesErrorCases
      */
-    public function testFromArrayStrictErrorCase(array $fromValue): void
+    public function testByArrayStrictErrorCase(array $fromValue): void
     {
         $this->expectException(AssertionFailedException::class);
-        SnIntegerList::fromArrayStrict($fromValue);
+        SnIntegerList::byArrayStrict($fromValue);
     }
 
     /**
      * @dataProvider providesErrorCasesWithType
      */
-    public function testFromArrayStrictWithTypeErrorCase(array $fromValue, string $type): void
+    public function testByArrayStrictWithTypeErrorCase(array $fromValue, string $type): void
     {
         $this->expectException(AssertionFailedException::class);
-        SnIntegerList::fromArrayStrictWithType($fromValue, $type);
+        SnIntegerList::byArrayStrictWithType($fromValue, $type);
     }
 
     public function providesErrorCases(): array

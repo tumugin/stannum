@@ -13,7 +13,7 @@ class BytesTest extends TestCase
     {
         $this->assertSame(
             [232, 151, 141, 228, 186, 149, 227, 129, 153, 227, 129, 154],
-            SnString::fromString('藍井すず')->bytes()->toArray()
+            SnString::byString('藍井すず')->bytes()->toArray()
         );
     }
 }

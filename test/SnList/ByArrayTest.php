@@ -7,11 +7,11 @@ namespace Tumugin\Stannum\Test\SnList;
 use PHPUnit\Framework\TestCase;
 use Tumugin\Stannum\SnList;
 
-class FromArrayTest extends TestCase
+class ByArrayTest extends TestCase
 {
     public function testWithEmptyArray(): void
     {
-        $this->assertSame([], SnList::fromArray([])->toArray());
+        $this->assertSame([], SnList::byArray([])->toArray());
     }
 
     public function testWithListArray(): void
@@ -26,7 +26,7 @@ class FromArrayTest extends TestCase
                 '永堀ゆめ',
                 '朝比奈れい',
             ],
-            SnList::fromArray([
+            SnList::byArray([
                 '橋本あみ',
                 '工藤のか',
                 '藍井すず',
@@ -50,7 +50,7 @@ class FromArrayTest extends TestCase
                 '永堀ゆめ',
                 '朝比奈れい',
             ],
-            SnList::fromArray([
+            SnList::byArray([
                 152 => '橋本あみ',
                 168 => '工藤のか',
                 156 => '藍井すず',
