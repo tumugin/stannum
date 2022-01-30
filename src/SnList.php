@@ -9,21 +9,34 @@ use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Exception;
 
+/**
+ * Wrapper class of sequential array
+ */
 class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
 {
     protected array $value;
 
+    /**
+     * internal: Creates instance by raw value.
+     */
     protected function __construct(array $value)
     {
         $this->value = $value;
     }
 
+    /**
+     * Creates SnList instance by native array.
+     *
+     * @param array $value Base array
+     */
     public static function fromArray(array $value): self
     {
         return new static(array_values($value));
     }
 
     /**
+     * Creates SnList instance by native array which includes single type.
+     *
      * @throws AssertionFailedException
      */
     public static function fromArrayStrict(array $value): self
@@ -45,6 +58,8 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     }
 
     /**
+     * Creates SnList instance by native array which includes only one specified type.
+     *
      * @throws AssertionFailedException
      */
     public static function fromArrayStrictWithType(array $value, string $type): self
@@ -62,16 +77,27 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
         return new static(array_values($value));
     }
 
+    /**
+     * Converts to native array.
+     */
     public function toArray(): array
     {
         return $this->value;
     }
 
+    /**
+     * Returns length of list.
+     */
     public function length(): SnInteger
     {
         return SnInteger::byInt(count($this->value));
     }
 
+    /**
+     * Concat with specified lists and return new SnList instance.
+     *
+     * @param SnList ...$value
+     */
     public function concat(self ...$value): self
     {
         $mergedArray = [...$this->value];
@@ -82,6 +108,8 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     }
 
     /**
+     * Filter list
+     *
      * @param callable(mixed): bool $callback
      */
     public function filter(callable $callback): self
@@ -94,16 +122,20 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     }
 
     /**
+     * Find and return the first item or null.
+     *
      * @param callable(mixed): bool $callback
+     * @return null|mixed
      */
     public function find(callable $callback)
     {
-        return array_values(
-            array_filter($this->value, $callback)
-        )[0] ?? null;
+        return array_values(array_filter($this->value, $callback))[0] ?? null;
     }
 
     /**
+     * Returns the item of specified index.
+     *
+     * @param int $index index of item
      * @throws AssertionFailedException
      */
     public function get(int $index)
@@ -113,21 +145,42 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
         return $this->value[$index];
     }
 
+    /**
+     * Returns the item of specified index.
+     *
+     * If the index is out of range, will return null.
+     *
+     * @param int $index
+     * @return mixed|null
+     */
     public function getOrNull(int $index)
     {
         return $this->value[$index] ?? null;
     }
 
+    /**
+     * Returns the list is empty or not.
+     */
     public function isEmpty(): bool
     {
         return count($this->value) === 0;
     }
 
+    /**
+     * Returns the value specified is included in list
+     *
+     * @param mixed $needle value to find in the list
+     */
     public function contains($needle): bool
     {
         return in_array($needle, $this->value, true);
     }
 
+    /**
+     * Returns the unique list
+     *
+     * @return $this
+     */
     public function distinct(): self
     {
         return new static(
@@ -138,6 +191,9 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     }
 
     /**
+     * Returns the first item
+     *
+     * @return mixed
      * @throws AssertionFailedException
      */
     public function first()
@@ -147,6 +203,8 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     }
 
     /**
+     * Returns the last item
+     *
      * @throws AssertionFailedException
      */
     public function last()
@@ -156,6 +214,8 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     }
 
     /**
+     * Applies the callback to the elements
+     *
      * @param callable(mixed): mixed $callback
      */
     public function map(callable $callback): self
@@ -168,6 +228,10 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     }
 
     /**
+     * Sorts the list
+     *
+     * NOTE: Callable arguments are same as usort.
+     *
      * @param callable(mixed, mixed): mixed $callback
      */
     public function sort(callable $callback): self
@@ -177,16 +241,32 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
         return new static($shallowCopyOfArray);
     }
 
+    /**
+     * Returns the length of list
+     */
     public function count(): int
     {
         return $this->length()->toInt();
     }
 
+    /**
+     * Returns offset exists in list
+     *
+     * @param int $offset Offset value
+     * @return bool
+     */
     public function offsetExists($offset): bool
     {
         return isset($this->value[$offset]);
     }
 
+    /**
+     * Returns the value of offset
+     *
+     * @param int $offset Offset value
+     * @return mixed
+     * @throws Exception
+     */
     public function offsetGet($offset)
     {
         if (!isset($this->value[$offset])) {
@@ -195,17 +275,17 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
         return $this->value[$offset];
     }
 
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
-        throw new Exception('Set is now allow for immutable SnList.');
+        throw new Exception('Set is not allowed for immutable SnList.');
     }
 
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
-        throw new Exception('Unset is now allow for immutable SnList.');
+        throw new Exception('Unset is not allowed for immutable SnList.');
     }
 
-    public function getIterator()
+    public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->value);
     }
