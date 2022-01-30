@@ -18,15 +18,15 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
         $this->value = $value;
     }
 
-    public static function fromArray(array $value): SnList
+    public static function fromArray(array $value): self
     {
-        return new SnList(array_values($value));
+        return new static(array_values($value));
     }
 
     /**
      * @throws AssertionFailedException
      */
-    public static function fromArrayStrict(array $value): SnList
+    public static function fromArrayStrict(array $value): self
     {
         $types = [];
         foreach ($value as $v) {
@@ -41,13 +41,13 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
             'Base array contains multiple types.'
         );
 
-        return new SnList(array_values($value));
+        return new static(array_values($value));
     }
 
     /**
      * @throws AssertionFailedException
      */
-    public static function fromArrayStrictWithType(array $value, string $type): SnList
+    public static function fromArrayStrictWithType(array $value, string $type): self
     {
         foreach ($value as $v) {
             if (gettype($v) === 'object') {
@@ -59,7 +59,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
             Assertion::same($actualType, $type, "value in array must be type of {$type}");
         }
 
-        return new SnList(array_values($value));
+        return new static(array_values($value));
     }
 
     public function toArray(): array
@@ -72,21 +72,21 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
         return SnInteger::byInt(count($this->value));
     }
 
-    public function concat(SnList ...$value): SnList
+    public function concat(self ...$value): self
     {
         $mergedArray = [...$this->value];
         foreach ($value as $snList) {
             $mergedArray = [...$mergedArray, ...$snList->value];
         }
-        return new SnList($mergedArray);
+        return new static($mergedArray);
     }
 
     /**
      * @param callable(mixed): bool $callback
      */
-    public function filter(callable $callback): SnList
+    public function filter(callable $callback): self
     {
-        return new SnList(
+        return new static(
             array_values(
                 array_filter($this->value, $callback)
             )
@@ -128,9 +128,9 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
         return in_array($needle, $this->value, true);
     }
 
-    public function distinct(): SnList
+    public function distinct(): self
     {
-        return new SnList(
+        return new static(
             array_values(
                 array_unique($this->value)
             )
@@ -158,9 +158,9 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     /**
      * @param callable(mixed): mixed $callback
      */
-    public function map(callable $callback): SnList
+    public function map(callable $callback): self
     {
-        return new SnList(
+        return new static(
             array_values(
                 array_map($callback, $this->value)
             )
@@ -170,11 +170,11 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     /**
      * @param callable(mixed, mixed): mixed $callback
      */
-    public function sort(callable $callback): SnList
+    public function sort(callable $callback): self
     {
         $shallowCopyOfArray = $this->value;
         usort($shallowCopyOfArray, $callback);
-        return new SnList($shallowCopyOfArray);
+        return new static($shallowCopyOfArray);
     }
 
     public function count(): int

@@ -14,28 +14,28 @@ class SnIntegerList extends SnNumericList
     /**
      * @throws AssertionFailedException
      */
-    public static function fromArray(array $value): SnIntegerList
+    public static function fromArray(array $value): self
     {
-        return new SnIntegerList(parent::fromArrayStrictWithType($value, SnInteger::class)->toArray());
+        return new static(parent::fromArrayStrictWithType($value, SnInteger::class)->toArray());
     }
 
-    public static function fromArrayStrict(array $value): SnIntegerList
+    public static function fromArrayStrict(array $value): self
     {
-        return new SnIntegerList(parent::fromArrayStrictWithType($value, SnInteger::class)->toArray());
+        return new static(parent::fromArrayStrictWithType($value, SnInteger::class)->toArray());
     }
 
-    public static function fromArrayStrictWithType(array $value, string $type): SnIntegerList
+    public static function fromArrayStrictWithType(array $value, string $type): self
     {
         Assertion::same($type, SnInteger::class, '$type must be SnInteger');
-        return new SnIntegerList(parent::fromArrayStrictWithType($value, $type)->toArray());
+        return new static(parent::fromArrayStrictWithType($value, $type)->toArray());
     }
 
     /**
      * @param int[] $value
      */
-    public static function fromIntArray(array $value): SnIntegerList
+    public static function fromIntArray(array $value): self
     {
-        return new SnIntegerList(
+        return new static(
             SnList::fromArrayStrictWithType($value, 'integer')
                 ->map(fn(int $v) => SnInteger::byInt($v))
                 ->toArray()

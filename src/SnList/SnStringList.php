@@ -14,20 +14,20 @@ class SnStringList extends SnList
     /**
      * @throws AssertionFailedException
      */
-    public static function fromArray(array $value): SnStringList
+    public static function fromArray(array $value): self
     {
-        return new SnStringList(parent::fromArrayStrictWithType($value, SnString::class)->toArray());
+        return new static(parent::fromArrayStrictWithType($value, SnString::class)->toArray());
     }
 
-    public static function fromArrayStrict(array $value): SnStringList
+    public static function fromArrayStrict(array $value): self
     {
-        return new SnStringList(parent::fromArrayStrictWithType($value, SnString::class)->toArray());
+        return new static(parent::fromArrayStrictWithType($value, SnString::class)->toArray());
     }
 
-    public static function fromArrayStrictWithType(array $value, string $type): SnStringList
+    public static function fromArrayStrictWithType(array $value, string $type): self
     {
         Assertion::same($type, SnString::class, '$type must be SnString');
-        return new SnStringList(parent::fromArrayStrictWithType($value, $type)->toArray());
+        return new static(parent::fromArrayStrictWithType($value, $type)->toArray());
     }
 
     /**
