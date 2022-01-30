@@ -7,7 +7,7 @@ namespace Tumugin\Stannum;
 /**
  * Base class of SnInteger and SnFloat.
  */
-abstract class SnNumeric
+abstract class SnNumeric extends SnBaseValue
 {
     /** @var int|float $value Internal raw value. */
     protected $value;
@@ -126,5 +126,13 @@ abstract class SnNumeric
     public function abs(): self
     {
         return new static(abs($this->value));
+    }
+
+    /**
+     * @return float|int
+     */
+    public function getRawValue()
+    {
+        return $this->value;
     }
 }

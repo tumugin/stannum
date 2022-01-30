@@ -10,6 +10,7 @@
     }
   ],
   "require": {
+    "php": ">=7.4",
     "beberlei/assert": "^3.3.2",
     "ext-mbstring": "*"
   },

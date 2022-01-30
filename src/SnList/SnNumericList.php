@@ -6,9 +6,8 @@ namespace Tumugin\Stannum\SnList;
 
 use Tumugin\Stannum\SnFloat;
 use Tumugin\Stannum\SnInteger;
-use Tumugin\Stannum\SnList;
 
-abstract class SnNumericList extends SnList
+abstract class SnNumericList extends SnBaseValueArray
 {
     /**
      * @return SnFloat|SnInteger
@@ -71,8 +70,10 @@ abstract class SnNumericList extends SnList
                 return SnInteger::byInt($result);
             case 'double':
                 return SnFloat::byFloat($result);
+            // @codeCoverageIgnoreStart
             default:
                 throw new \Exception('unhandled type.');
+            // @codeCoverageIgnoreEnd
         }
     }
 }
