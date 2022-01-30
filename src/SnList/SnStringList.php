@@ -45,4 +45,15 @@ class SnStringList extends SnBaseValueArray
         Assertion::same($type, SnString::class, '$type must be SnString');
         return new static(parent::byArrayStrictWithType($value, $type)->toArray());
     }
+
+    /**
+     * Creates SnStringList instance by native string array.
+     *
+     * @param string[] $value
+     * @throws AssertionFailedException
+     */
+    public static function byStringArray(array $value): self
+    {
+        return new static(parent::byArrayStrictWithType($value, 'string')->toArray());
+    }
 }
