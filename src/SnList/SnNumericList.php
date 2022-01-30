@@ -70,8 +70,10 @@ abstract class SnNumericList extends SnBaseValueArray
                 return SnInteger::byInt($result);
             case 'double':
                 return SnFloat::byFloat($result);
+            // @codeCoverageIgnoreStart
             default:
                 throw new \Exception('unhandled type.');
+            // @codeCoverageIgnoreEnd
         }
     }
 }
