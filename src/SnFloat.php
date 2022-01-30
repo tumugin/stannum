@@ -18,11 +18,11 @@ class SnFloat extends SnNumeric
      * @param string $value String value can be parsed as float. (e.g. '0.9144')
      * @throws AssertionFailedException
      */
-    public static function byString(string $value): SnFloat
+    public static function byString(string $value): self
     {
         Assertion::true(is_numeric($value), 'Input $value is not valid float.');
 
-        return new SnFloat(floatval($value));
+        return new static(floatval($value));
     }
 
     /**
@@ -30,9 +30,9 @@ class SnFloat extends SnNumeric
      *
      * @param int $value Base integer value
      */
-    public static function byInt(int $value): SnFloat
+    public static function byInt(int $value): self
     {
-        return new SnFloat((float)$value);
+        return new static((float)$value);
     }
 
     /**
@@ -40,32 +40,32 @@ class SnFloat extends SnNumeric
      *
      * @param float $value Base float value
      */
-    public static function byFloat(float $value): SnFloat
+    public static function byFloat(float $value): self
     {
-        return new SnFloat($value);
+        return new static($value);
     }
 
     /**
      * Absolute value
      */
-    public function abs(): SnFloat
+    public function abs(): self
     {
-        return new SnFloat(abs($this->value));
+        return parent::abs();
     }
 
     /**
      * Round fractions up
      */
-    public function ceil(): SnFloat
+    public function ceil(): self
     {
-        return new SnFloat(ceil($this->value));
+        return new static(ceil($this->value));
     }
 
     /**
      * Round fractions down
      */
-    public function floor()
+    public function floor(): self
     {
-        return new SnFloat(floor($this->value));
+        return new static(floor($this->value));
     }
 }
