@@ -4,13 +4,17 @@ declare(strict_types=1);
 
 namespace Tumugin\Stannum\SnList;
 
+use Exception;
 use Tumugin\Stannum\SnFloat;
 use Tumugin\Stannum\SnInteger;
 
 abstract class SnNumericList extends SnBaseValueArray
 {
     /**
+     * Return the total value of the array
+     *
      * @return SnFloat|SnInteger
+     * @throws Exception
      */
     public function total()
     {
@@ -23,7 +27,10 @@ abstract class SnNumericList extends SnBaseValueArray
     }
 
     /**
+     * Return the average value of the array
+     *
      * @return SnFloat|SnInteger
+     * @throws Exception
      */
     public function average()
     {
@@ -37,7 +44,10 @@ abstract class SnNumericList extends SnBaseValueArray
     }
 
     /**
+     * Return the maximum value of the array
+     *
      * @return SnFloat|SnInteger
+     * @throws Exception
      */
     public function max()
     {
@@ -49,6 +59,12 @@ abstract class SnNumericList extends SnBaseValueArray
         return $this->convertFloatOrIntegerToSnTypes($result);
     }
 
+    /**
+     * Return the minimum value of the array
+     *
+     * @return SnFloat|SnInteger
+     * @throws Exception
+     */
     public function min()
     {
         $result = min(
@@ -62,6 +78,7 @@ abstract class SnNumericList extends SnBaseValueArray
     /**
      * @param integer|float $result
      * @return SnFloat|SnInteger
+     * @throws Exception
      */
     private function convertFloatOrIntegerToSnTypes($result)
     {
@@ -72,7 +89,7 @@ abstract class SnNumericList extends SnBaseValueArray
                 return SnFloat::byFloat($result);
             // @codeCoverageIgnoreStart
             default:
-                throw new \Exception('unhandled type.');
+                throw new Exception('unhandled type.');
             // @codeCoverageIgnoreEnd
         }
     }

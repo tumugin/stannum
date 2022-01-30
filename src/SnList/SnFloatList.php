@@ -12,6 +12,8 @@ use Tumugin\Stannum\SnList;
 class SnFloatList extends SnNumericList
 {
     /**
+     * Creates SnFloatList instance by native array.
+     *
      * @throws AssertionFailedException
      */
     public static function fromArray(array $value): self
@@ -19,11 +21,25 @@ class SnFloatList extends SnNumericList
         return new static(parent::fromArrayStrictWithType($value, SnFloat::class)->toArray());
     }
 
+    /**
+     * Creates SnFloatList instance by native array which includes single type.
+     *
+     * @param SnFloat[] $value Base array
+     * @throws AssertionFailedException
+     */
     public static function fromArrayStrict(array $value): self
     {
         return new static(parent::fromArrayStrictWithType($value, SnFloat::class)->toArray());
     }
 
+    /**
+     * Creates SnFloatList instance by native array which includes only one specified type.
+     *
+     * @param SnFloat[] $value Base array
+     * @param string $type type of value
+     * @return SnFloatList
+     * @throws AssertionFailedException
+     */
     public static function fromArrayStrictWithType(array $value, string $type): self
     {
         Assertion::same($type, SnFloat::class, '$type must be SnInteger');
@@ -31,7 +47,10 @@ class SnFloatList extends SnNumericList
     }
 
     /**
+     * Creates SnFloatList instance by native float array.
+     *
      * @param float[] $value
+     * @throws AssertionFailedException
      */
     public static function fromFloatArray(array $value): self
     {
@@ -43,6 +62,8 @@ class SnFloatList extends SnNumericList
     }
 
     /**
+     * Convert to native float array.
+     *
      * @return float[]
      */
     public function toFloatArray(): array
@@ -65,5 +86,10 @@ class SnFloatList extends SnNumericList
     public function min(): SnFloat
     {
         return parent::min();
+    }
+
+    public function average(): SnFloat
+    {
+        return parent::average();
     }
 }
