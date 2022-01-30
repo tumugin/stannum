@@ -119,4 +119,12 @@ abstract class SnNumeric
     {
         return !$this->isEven();
     }
+
+    /**
+     * Absolute value
+     */
+    public function abs(): self
+    {
+        return new static(abs($this->value));
+    }
 }
