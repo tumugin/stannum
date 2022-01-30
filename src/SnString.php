@@ -24,24 +24,24 @@ class SnString
     /**
      * @throws AssertionFailedException
      */
-    public static function fromString(string $value): SnString
+    public static function fromString(string $value): self
     {
         Assertion::inArray(
             mb_detect_encoding($value),
             ['UTF-8', 'ASCII'],
             'Value must be valid UTF-8 string.'
         );
-        return new SnString($value);
+        return new static($value);
     }
 
-    public static function fromInt(int $value): SnString
+    public static function fromInt(int $value): self
     {
-        return new SnString("{$value}");
+        return new static("{$value}");
     }
 
-    public static function fromFloat(float $value): SnString
+    public static function fromFloat(float $value): self
     {
-        return new SnString("{$value}");
+        return new static("{$value}");
     }
 
     public function toString(): string
@@ -54,17 +54,17 @@ class SnString
         return SnInteger::byInt(mb_strlen($this->value));
     }
 
-    public function equals(SnString $value): bool
+    public function equals(self $value): bool
     {
         return $this->value === $value->value;
     }
 
-    public function concat(SnString $value): SnString
+    public function concat(self $value): self
     {
-        return new SnString($this->value . $value->value);
+        return new static($this->value . $value->value);
     }
 
-    public function contains(SnString $needle): bool
+    public function contains(self $needle): bool
     {
         // workaround: PHP7.4 with empty needle will return error
         if ($needle->value === '') {
@@ -84,21 +84,21 @@ class SnString
         return SnList::fromArrayStrict(array_values(unpack('C*', $this->value)));
     }
 
-    public function capitalizeFirst(): SnString
+    public function capitalizeFirst(): self
     {
         $firstChar = mb_substr($this->value, 0, 1);
         $then = mb_substr($this->value, 1, null);
-        return new SnString(mb_strtoupper($firstChar) . $then);
+        return new static(mb_strtoupper($firstChar) . $then);
     }
 
-    public function capitalizeAll(): SnString
+    public function capitalizeAll(): self
     {
-        return new SnString(mb_strtoupper($this->value));
+        return new static(mb_strtoupper($this->value));
     }
 
-    public function downcaseAll(): SnString
+    public function downcaseAll(): self
     {
-        return new SnString(mb_strtolower($this->value));
+        return new static(mb_strtolower($this->value));
     }
 
     public function chars(): SnList
@@ -106,9 +106,9 @@ class SnString
         return SnList::fromArrayStrict(mb_str_split($this->value));
     }
 
-    public function trim(): SnString
+    public function trim(): self
     {
-        return new SnString(preg_replace('/\A[\x00\s]++|[\x00\s]++\z/u', '', $this->value));
+        return new static(preg_replace('/\A[\x00\s]++|[\x00\s]++\z/u', '', $this->value));
     }
 
     public function isEmpty(): bool
@@ -116,12 +116,12 @@ class SnString
         return $this->value === '';
     }
 
-    public function endsWith(SnString $needle): bool
+    public function endsWith(self $needle): bool
     {
         return mb_substr($this->value, -mb_strlen($needle->value)) === $needle->value;
     }
 
-    public function startsWith(SnString $needle): bool
+    public function startsWith(self $needle): bool
     {
         // workaround: PHP7.4 with empty needle will return error
         if ($needle->value === '') {
@@ -131,13 +131,13 @@ class SnString
         return mb_strpos($this->value, $needle->value) === 0;
     }
 
-    public function replace(SnString $search, SnString $replace): SnString
+    public function replace(self $search, self $replace): self
     {
-        return new SnString(str_replace($search->value, $replace->value, $this->value));
+        return new static(str_replace($search->value, $replace->value, $this->value));
     }
 
-    public function pregReplace(SnString $regex, SnString $replace): SnString
+    public function pregReplace(self $regex, self $replace): self
     {
-        return new SnString(preg_replace($regex->value, $replace->value, $this->value));
+        return new static(preg_replace($regex->value, $replace->value, $this->value));
     }
 }

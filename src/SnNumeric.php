@@ -57,9 +57,9 @@ abstract class SnNumeric
     /**
      * Returns the passed SnNumeric value is same as is.
      *
-     * @param SnNumeric $value The SnNumeric it will be compared.
+     * @param self $value The SnNumeric it will be compared.
      */
-    public function isEqual(SnNumeric $value): bool
+    public function isEqual(self $value): bool
     {
         return $this->value === $value->value;
     }
@@ -67,9 +67,9 @@ abstract class SnNumeric
     /**
      * Returns the passed SnNumeric value is greater or equal than self.
      *
-     * @param SnNumeric $value The SnNumeric it will be compared.
+     * @param self $value The SnNumeric it will be compared.
      */
-    public function isGreaterOrEqualThan(SnNumeric $value): bool
+    public function isGreaterOrEqualThan(self $value): bool
     {
         return $this->value >= $value->value;
     }
@@ -77,9 +77,9 @@ abstract class SnNumeric
     /**
      * Returns the passed SnNumeric value is greater than self.
      *
-     * @param SnNumeric $value The SnNumeric it will be compared.
+     * @param self $value The SnNumeric it will be compared.
      */
-    public function isGreaterThan(SnNumeric $value): bool
+    public function isGreaterThan(self $value): bool
     {
         return $this->value > $value->value;
     }
@@ -87,9 +87,9 @@ abstract class SnNumeric
     /**
      * Returns the passed SnNumeric value is less or equal than self.
      *
-     * @param SnNumeric $value The SnNumeric it will be compared.
+     * @param self $value The SnNumeric it will be compared.
      */
-    public function isLessOrEqualThan(SnNumeric $value): bool
+    public function isLessOrEqualThan(self $value): bool
     {
         return $this->value <= $value->value;
     }
@@ -97,9 +97,9 @@ abstract class SnNumeric
     /**
      * Returns the passed SnNumeric value is less than self.
      *
-     * @param SnNumeric $value The SnNumeric it will be compared.
+     * @param self $value The SnNumeric it will be compared.
      */
-    public function isLessThan(SnNumeric $value): bool
+    public function isLessThan(self $value): bool
     {
         return $this->value < $value->value;
     }

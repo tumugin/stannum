@@ -16,18 +16,18 @@ class SnFloatList extends SnNumericList
      */
     public static function fromArray(array $value): self
     {
-        return new self(parent::fromArrayStrictWithType($value, SnFloat::class)->toArray());
+        return new static(parent::fromArrayStrictWithType($value, SnFloat::class)->toArray());
     }
 
     public static function fromArrayStrict(array $value): self
     {
-        return new self(parent::fromArrayStrictWithType($value, SnFloat::class)->toArray());
+        return new static(parent::fromArrayStrictWithType($value, SnFloat::class)->toArray());
     }
 
     public static function fromArrayStrictWithType(array $value, string $type): self
     {
         Assertion::same($type, SnFloat::class, '$type must be SnInteger');
-        return new self(parent::fromArrayStrictWithType($value, $type)->toArray());
+        return new static(parent::fromArrayStrictWithType($value, $type)->toArray());
     }
 
     /**
