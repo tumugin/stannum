@@ -20,8 +20,8 @@ class PregReplaceTest extends TestCase
     ): void {
         $this->assertSame(
             $expected,
-            SnString::fromString($testString)
-                ->pregReplace(SnString::fromString($searchString), SnString::fromString($replaceString))
+            SnString::byString($testString)
+                ->pregReplace(SnString::byString($searchString), SnString::byString($replaceString))
                 ->toString()
         );
     }

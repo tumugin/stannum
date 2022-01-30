@@ -14,7 +14,7 @@ class DowncaseAllTest extends TestCase
      */
     public function testWithStrings(string $testString, string $expected): void
     {
-        $actual = SnString::fromString($testString)->downcaseAll()->toString();
+        $actual = SnString::byString($testString)->downcaseAll()->toString();
         $this->assertSame($expected, $actual);
     }
 

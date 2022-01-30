@@ -11,7 +11,7 @@ class GetOrNullTest extends TestCase
 {
     public function testGet(): void
     {
-        $testList = SnList::fromArray([
+        $testList = SnList::byArray([
             '藍井すず',
             '藤宮めい',
             '橋本あみ',
@@ -21,7 +21,7 @@ class GetOrNullTest extends TestCase
 
     public function testGetWithNullCase(): void
     {
-        $testList = SnList::fromArray([
+        $testList = SnList::byArray([
             '藍井すず',
             '藤宮めい',
             '橋本あみ',

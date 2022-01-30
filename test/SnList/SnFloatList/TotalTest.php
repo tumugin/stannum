@@ -14,7 +14,7 @@ class TotalTest extends TestCase
     {
         $this->assertSame(
             10.299999999999999,
-            SnFloatList::fromFloatArray([5.1, 3.1, 2.1])->total()->toFloat()
+            SnFloatList::byFloatArray([5.1, 3.1, 2.1])->total()->toFloat()
         );
     }
 }

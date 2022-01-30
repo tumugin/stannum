@@ -12,7 +12,7 @@ class IsEmptyTest extends TestCase
      */
     public function testWithStrings(string $testString, bool $expected): void
     {
-        $this->assertSame($expected, SnString::fromString($testString)->isEmpty());
+        $this->assertSame($expected, SnString::byString($testString)->isEmpty());
     }
 
     public function provideStrings(): array

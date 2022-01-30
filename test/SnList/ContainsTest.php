@@ -11,11 +11,11 @@ class ContainsTest extends TestCase
 {
     public function testContainsWithExistingItem(): void
     {
-        $this->assertTrue(SnList::fromArray(['藍井すず'])->contains('藍井すず'));
+        $this->assertTrue(SnList::byArray(['藍井すず'])->contains('藍井すず'));
     }
 
     public function testContainsWithNonExistingItem(): void
     {
-        $this->assertFalse(SnList::fromArray(['藍井すず'])->contains('藤宮めい'));
+        $this->assertFalse(SnList::byArray(['藍井すず'])->contains('藤宮めい'));
     }
 }

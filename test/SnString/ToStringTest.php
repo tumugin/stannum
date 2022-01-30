@@ -11,12 +11,12 @@ class ToStringTest extends TestCase
 {
     public function testToString(): void
     {
-        $this->assertSame('藍井すず', SnString::fromString('藍井すず')->toString());
+        $this->assertSame('藍井すず', SnString::byString('藍井すず')->toString());
     }
 
     public function testPHPToString(): void
     {
-        $snString = SnString::fromString('藍井すず');
+        $snString = SnString::byString('藍井すず');
         $this->assertSame('藍井すず', "{$snString}");
     }
 }

@@ -16,9 +16,9 @@ class SnStringList extends SnBaseValueArray
      * @param SnString[] $value Base array
      * @throws AssertionFailedException
      */
-    public static function fromArray(array $value): self
+    public static function byArray(array $value): self
     {
-        return new static(parent::fromArrayStrictWithType($value, SnString::class)->toArray());
+        return new static(parent::byArrayStrictWithType($value, SnString::class)->toArray());
     }
 
     /**
@@ -27,9 +27,9 @@ class SnStringList extends SnBaseValueArray
      * @param SnString[] $value Base array
      * @throws AssertionFailedException
      */
-    public static function fromArrayStrict(array $value): self
+    public static function byArrayStrict(array $value): self
     {
-        return new static(parent::fromArrayStrictWithType($value, SnString::class)->toArray());
+        return new static(parent::byArrayStrictWithType($value, SnString::class)->toArray());
     }
 
     /**
@@ -40,9 +40,9 @@ class SnStringList extends SnBaseValueArray
      * @return SnStringList
      * @throws AssertionFailedException
      */
-    public static function fromArrayStrictWithType(array $value, string $type): self
+    public static function byArrayStrictWithType(array $value, string $type): self
     {
         Assertion::same($type, SnString::class, '$type must be SnString');
-        return new static(parent::fromArrayStrictWithType($value, $type)->toArray());
+        return new static(parent::byArrayStrictWithType($value, $type)->toArray());
     }
 }

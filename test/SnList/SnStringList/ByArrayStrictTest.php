@@ -9,19 +9,19 @@ use PHPUnit\Framework\TestCase;
 use Tumugin\Stannum\SnList\SnStringList;
 use Tumugin\Stannum\SnString;
 
-class FromArrayStrictTest extends TestCase
+class ByArrayStrictTest extends TestCase
 {
-    public function testFromArrayStrict(): void
+    public function testByArrayStrict(): void
     {
-        $testSnString = SnString::fromString('藍井すず');
+        $testSnString = SnString::byString('藍井すず');
         $testSnStringArray = [$testSnString];
-        $snStringList = SnStringList::fromArrayStrict($testSnStringArray);
+        $snStringList = SnStringList::byArrayStrict($testSnStringArray);
         $this->assertSame($testSnStringArray, $snStringList->toArray());
     }
 
-    public function testFromArrayStrictErrorCase(): void
+    public function testByArrayStrictErrorCase(): void
     {
         $this->expectException(AssertionFailedException::class);
-        SnStringList::fromArrayStrict(['藍井すず']);
+        SnStringList::byArrayStrict(['藍井すず']);
     }
 }

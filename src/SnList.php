@@ -29,7 +29,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      *
      * @param array $value Base array
      */
-    public static function fromArray(array $value): self
+    public static function byArray(array $value): self
     {
         return new static(array_values($value));
     }
@@ -40,7 +40,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      * @param array $value Base array
      * @throws AssertionFailedException
      */
-    public static function fromArrayStrict(array $value): self
+    public static function byArrayStrict(array $value): self
     {
         $types = [];
         foreach ($value as $v) {
@@ -65,7 +65,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      * @param string $type type of value
      * @throws AssertionFailedException
      */
-    public static function fromArrayStrictWithType(array $value, string $type): self
+    public static function byArrayStrictWithType(array $value, string $type): self
     {
         foreach ($value as $v) {
             if (gettype($v) === 'object') {

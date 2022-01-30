@@ -13,7 +13,7 @@ class AverageTest extends TestCase
     {
         $this->assertSame(
             2.75,
-            SnFloatList::fromFloatArray([1.1, 2.2, 3.3, 4.4])
+            SnFloatList::byFloatArray([1.1, 2.2, 3.3, 4.4])
                 ->average()
                 ->toFloat()
         );

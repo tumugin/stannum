@@ -7,11 +7,11 @@ namespace Tumugin\Stannum\Test\SnString;
 use PHPUnit\Framework\TestCase;
 use Tumugin\Stannum\SnString;
 
-class FromIntTest extends TestCase
+class ByIntTest extends TestCase
 {
     public function testWithNormalInt(): void
     {
-        $snString = SnString::fromInt(20);
+        $snString = SnString::byInt(20);
         $this->assertSame('20', $snString->toString());
     }
 }

@@ -35,7 +35,7 @@ class SnString extends SnBaseValue
      * @param string $value Base value
      * @throws AssertionFailedException
      */
-    public static function fromString(string $value): self
+    public static function byString(string $value): self
     {
         Assertion::inArray(
             mb_detect_encoding($value),
@@ -50,7 +50,7 @@ class SnString extends SnBaseValue
      *
      * @param int $value Base value
      */
-    public static function fromInt(int $value): self
+    public static function byInt(int $value): self
     {
         return new static("{$value}");
     }
@@ -60,7 +60,7 @@ class SnString extends SnBaseValue
      *
      * @param float $value Base value
      */
-    public static function fromFloat(float $value): self
+    public static function byFloat(float $value): self
     {
         return new static("{$value}");
     }
@@ -131,7 +131,7 @@ class SnString extends SnBaseValue
      */
     public function bytes(): SnList
     {
-        return SnList::fromArrayStrict(array_values(unpack('C*', $this->value)));
+        return SnList::byArrayStrict(array_values(unpack('C*', $this->value)));
     }
 
     /**
@@ -167,7 +167,7 @@ class SnString extends SnBaseValue
      */
     public function chars(): SnList
     {
-        return SnList::fromArrayStrict(mb_str_split($this->value));
+        return SnList::byArrayStrict(mb_str_split($this->value));
     }
 
     /**

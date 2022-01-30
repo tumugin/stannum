@@ -16,7 +16,7 @@ class EndsWithTest extends TestCase
     {
         $this->assertSame(
             $expected,
-            SnString::fromString($testString)->endsWith(SnString::fromString($needleString))
+            SnString::byString($testString)->endsWith(SnString::byString($needleString))
         );
     }
 

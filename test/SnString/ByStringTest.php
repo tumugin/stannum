@@ -8,21 +8,21 @@ use Assert\AssertionFailedException;
 use PHPUnit\Framework\TestCase;
 use Tumugin\Stannum\SnString;
 
-class FromStringTest extends TestCase
+class ByStringTest extends TestCase
 {
     /**
      * @dataProvider provideTestValidUtf8Strings
      */
     public function testWithValidUtf8String(string $testString): void
     {
-        $snString = SnString::fromString($testString);
+        $snString = SnString::byString($testString);
         $this->assertSame($testString, $snString->toString());
     }
 
     public function testAssertionWithInvalidUtf8String(): void
     {
         $this->expectException(AssertionFailedException::class);
-        SnString::fromString("\x97\x95\x88\xe4\x82\xb7\x82\xb8");
+        SnString::byString("\x97\x95\x88\xe4\x82\xb7\x82\xb8");
     }
 
     public function provideTestValidUtf8Strings(): array

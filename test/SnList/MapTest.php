@@ -11,7 +11,7 @@ class MapTest extends TestCase
 {
     public function testMap(): void
     {
-        $testArray = SnList::fromArray([
+        $testArray = SnList::byArray([
             '橋本あみ',
             '工藤のか',
             '藍井すず',

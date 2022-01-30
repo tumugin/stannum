@@ -14,7 +14,7 @@ class MinTest extends TestCase
     {
         $this->assertSame(
             10,
-            SnFloatList::fromFloatArray([50.1, 10.1, 100.1])->min()->toInt()
+            SnFloatList::byFloatArray([50.1, 10.1, 100.1])->min()->toInt()
         );
     }
 }

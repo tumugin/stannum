@@ -26,19 +26,19 @@ class ContainsTest extends TestCase
         return [
             [
                 true,
-                SnStringList::fromArray([
-                    SnString::fromString('藍井すず'),
-                    SnString::fromString('藤宮めい'),
+                SnStringList::byArray([
+                    SnString::byString('藍井すず'),
+                    SnString::byString('藤宮めい'),
                 ]),
-                SnString::fromString('藍井すず'),
+                SnString::byString('藍井すず'),
             ],
             [
                 false,
-                SnStringList::fromArray([
-                    SnString::fromString('藍井すず'),
-                    SnString::fromString('藤宮めい'),
+                SnStringList::byArray([
+                    SnString::byString('藍井すず'),
+                    SnString::byString('藤宮めい'),
                 ]),
-                SnString::fromString('工藤のか'),
+                SnString::byString('工藤のか'),
             ]
         ];
     }

@@ -13,7 +13,7 @@ class FindTest extends TestCase
     {
         $this->assertSame(
             2,
-            SnList::fromArray([1, 2, 3, 4, 5])
+            SnList::byArray([1, 2, 3, 4, 5])
                 ->find(fn(int $val) => $val % 2 === 0)
         );
     }
@@ -21,7 +21,7 @@ class FindTest extends TestCase
     public function testFindWithNullCase(): void
     {
         $this->assertNull(
-            SnList::fromArray([1, 2, 3, 4, 5])
+            SnList::byArray([1, 2, 3, 4, 5])
                 ->find(fn(int $val) => $val % 10 === 0)
         );
     }

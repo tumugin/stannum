@@ -13,7 +13,7 @@ class MaxTest extends TestCase
     {
         $this->assertSame(
             100,
-            SnFloatList::fromFloatArray([1.1, 100.1, 10.1])->max()->toInt()
+            SnFloatList::byFloatArray([1.1, 100.1, 10.1])->max()->toInt()
         );
     }
 }

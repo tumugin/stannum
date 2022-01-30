@@ -16,7 +16,7 @@ class StartsWithTest extends TestCase
     {
         $this->assertSame(
             $expected,
-            SnString::fromString($testString)->startsWith(SnString::fromString($needleString))
+            SnString::byString($testString)->startsWith(SnString::byString($needleString))
         );
     }
 

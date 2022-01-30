@@ -14,7 +14,7 @@ class IsAsciiOnlyTest extends TestCase
      */
     public function testWithStrings(string $testString, bool $expected): void
     {
-        $this->assertSame($expected, SnString::fromString($testString)->isAsciiOnly());
+        $this->assertSame($expected, SnString::byString($testString)->isAsciiOnly());
     }
 
     public function provideTestStrings(): array

@@ -16,7 +16,7 @@ class CapitalizeFirstTest extends TestCase
     {
         $this->assertSame(
             $expected,
-            SnString::fromString($testString)->capitalizeFirst()->toString()
+            SnString::byString($testString)->capitalizeFirst()->toString()
         );
     }
 

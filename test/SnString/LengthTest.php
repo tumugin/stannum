@@ -14,7 +14,7 @@ class LengthTest extends TestCase
      */
     public function testWithStrings(string $testString, int $expectedLength): void
     {
-        $actual = SnString::fromString($testString)->length()->toInt();
+        $actual = SnString::byString($testString)->length()->toInt();
         $this->assertSame($expectedLength, $actual);
     }
 

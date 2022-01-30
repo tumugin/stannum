@@ -12,7 +12,7 @@ class EqualsTest extends TestCase
     public function testEquals(): void
     {
         $this->assertTrue(
-            SnString::fromString('藍井すず')->equals(SnString::fromString('藍井すず'))
+            SnString::byString('藍井すず')->equals(SnString::byString('藍井すず'))
         );
     }
 }

@@ -8,19 +8,19 @@ use Assert\AssertionFailedException;
 use PHPUnit\Framework\TestCase;
 use Tumugin\Stannum\SnList\SnFloatList;
 
-class FromFloatArrayTest extends TestCase
+class ByFloatArrayTest extends TestCase
 {
-    public function testFromIntArray(): void
+    public function testByIntArray(): void
     {
         $this->assertSame(
             [1.1, 2.2, 3.3],
-            SnFLoatList::fromFloatArray([1.1, 2.2, 3.3])->toFloatArray()
+            SnFLoatList::byFloatArray([1.1, 2.2, 3.3])->toFloatArray()
         );
     }
 
     public function testWrongTypeArray(): void
     {
         $this->expectException(AssertionFailedException::class);
-        SnFLoatList::fromFloatArray(['藍井すず', 1.1, 2.2, 3.3]);
+        SnFLoatList::byFloatArray(['藍井すず', 1.1, 2.2, 3.3]);
     }
 }

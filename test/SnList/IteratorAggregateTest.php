@@ -20,7 +20,7 @@ class IteratorAggregateTest extends TestCase
             '永堀ゆめ',
             '朝比奈れい',
         ];
-        $testArray = SnList::fromArray($baseArray);
+        $testArray = SnList::byArray($baseArray);
         foreach ($testArray as $key => $value) {
             $this->assertSame($baseArray[$key], $value);
         }

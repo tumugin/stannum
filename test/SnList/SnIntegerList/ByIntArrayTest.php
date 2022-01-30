@@ -8,19 +8,19 @@ use Assert\AssertionFailedException;
 use PHPUnit\Framework\TestCase;
 use Tumugin\Stannum\SnList\SnIntegerList;
 
-class FromIntArrayTest extends TestCase
+class ByIntArrayTest extends TestCase
 {
-    public function testFromIntArray(): void
+    public function testByIntArray(): void
     {
         $this->assertSame(
             [1, 2, 3],
-            SnIntegerList::fromIntArray([1, 2, 3])->toIntArray()
+            SnIntegerList::byIntArray([1, 2, 3])->toIntArray()
         );
     }
 
     public function testWrongTypeArray(): void
     {
         $this->expectException(AssertionFailedException::class);
-        SnIntegerList::fromIntArray(['藍井すず', 1, 2, 3]);
+        SnIntegerList::byIntArray(['藍井すず', 1, 2, 3]);
     }
 }
