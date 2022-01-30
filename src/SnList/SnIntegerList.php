@@ -66,22 +66,4 @@ class SnIntegerList extends SnNumericList
     {
         return parent::min();
     }
-
-    /**
-     * @param SnInteger $needle
-     * @throws AssertionFailedException
-     */
-    public function contains($needle): bool
-    {
-        Assertion::true(
-            getType($needle) === 'object' && get_class($needle) === SnInteger::class,
-            '$needle must be type of SnInteger'
-        );
-
-        return in_array(
-            $needle->toInt(),
-            $this->map(fn(SnInteger $v) => $v->toInt())->toArray(),
-            true
-        );
-    }
 }

@@ -6,10 +6,9 @@ namespace Tumugin\Stannum\SnList;
 
 use Assert\Assertion;
 use Assert\AssertionFailedException;
-use Tumugin\Stannum\SnList;
 use Tumugin\Stannum\SnString;
 
-class SnStringList extends SnList
+class SnStringList extends SnBaseValueArray
 {
     /**
      * @throws AssertionFailedException
@@ -28,23 +27,5 @@ class SnStringList extends SnList
     {
         Assertion::same($type, SnString::class, '$type must be SnString');
         return new static(parent::fromArrayStrictWithType($value, $type)->toArray());
-    }
-
-    /**
-     * @param SnString $needle
-     * @throws AssertionFailedException
-     */
-    public function contains($needle): bool
-    {
-        Assertion::true(
-            getType($needle) === 'object' && get_class($needle) === SnString::class,
-            '$needle must be type of SnString'
-        );
-
-        return in_array(
-            $needle->toString(),
-            $this->map(fn(SnString $snString) => $snString->toString())->toArray(),
-            true
-        );
     }
 }

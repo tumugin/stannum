@@ -10,7 +10,7 @@ use Assert\AssertionFailedException;
 /**
  * Wrapper class of string value
  */
-class SnString
+class SnString extends SnBaseValue
 {
     protected string $value;
 
@@ -231,5 +231,10 @@ class SnString
     public function pregReplace(self $regex, self $replace): self
     {
         return new static(preg_replace($regex->value, $replace->value, $this->value));
+    }
+
+    public function getRawValue(): string
+    {
+        return $this->value;
     }
 }
