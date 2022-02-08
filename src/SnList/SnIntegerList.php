@@ -14,9 +14,10 @@ class SnIntegerList extends SnNumericList
     /**
      * Creates SnIntegerList instance by native array.
      *
+     * @return static
      * @throws AssertionFailedException
      */
-    public static function byArray(array $value): self
+    public static function byArray(array $value)
     {
         return new static(parent::byArrayStrictWithType($value, SnInteger::class)->toArray());
     }
@@ -28,7 +29,7 @@ class SnIntegerList extends SnNumericList
      * @return static
      * @throws AssertionFailedException
      */
-    public static function byArrayStrict(array $value): self
+    public static function byArrayStrict(array $value)
     {
         return new static(parent::byArrayStrictWithType($value, SnInteger::class)->toArray());
     }
@@ -41,7 +42,7 @@ class SnIntegerList extends SnNumericList
      * @return static
      * @throws AssertionFailedException
      */
-    public static function byArrayStrictWithType(array $value, string $type): self
+    public static function byArrayStrictWithType(array $value, string $type)
     {
         Assertion::same($type, SnInteger::class, '$type must be SnInteger');
         return new static(parent::byArrayStrictWithType($value, $type)->toArray());
@@ -51,10 +52,10 @@ class SnIntegerList extends SnNumericList
      * Creates SnFloatList instance by native integer array.
      *
      * @param int[] $value Base array
-     * @return SnIntegerList
+     * @return static
      * @throws AssertionFailedException
      */
-    public static function byIntArray(array $value): self
+    public static function byIntArray(array $value)
     {
         return new static(
             SnList::byArrayStrictWithType($value, 'integer')

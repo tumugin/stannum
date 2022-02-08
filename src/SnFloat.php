@@ -16,9 +16,10 @@ class SnFloat extends SnNumeric
      * Creates SnFloat instance by parsable string.
      *
      * @param string $value String value can be parsed as float. (e.g. '0.9144')
+     * @return static
      * @throws AssertionFailedException
      */
-    public static function byString(string $value): self
+    public static function byString(string $value)
     {
         Assertion::true(is_numeric($value), 'Input $value is not valid float.');
 
@@ -29,8 +30,9 @@ class SnFloat extends SnNumeric
      * Creates SnFloat instance by integer value.
      *
      * @param int $value Base integer value
+     * @return static
      */
-    public static function byInt(int $value): self
+    public static function byInt(int $value)
     {
         return new static((float)$value);
     }
@@ -39,32 +41,39 @@ class SnFloat extends SnNumeric
      * Creates SnFloat value by float value.
      *
      * @param float $value Base float value
+     * @return static
      */
-    public static function byFloat(float $value): self
+    public static function byFloat(float $value)
     {
         return new static($value);
     }
 
     /**
      * Absolute value
+     *
+     * @return static
      */
-    public function abs(): self
+    public function abs()
     {
         return parent::abs();
     }
 
     /**
      * Round fractions up
+     *
+     * @return static
      */
-    public function ceil(): self
+    public function ceil()
     {
         return new static(ceil($this->value));
     }
 
     /**
      * Round fractions down
+     *
+     * @return static
      */
-    public function floor(): self
+    public function floor()
     {
         return new static(floor($this->value));
     }

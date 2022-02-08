@@ -14,9 +14,10 @@ class SnStringList extends SnBaseValueArray
      * Creates SnStringList instance by native array.
      *
      * @param SnString[] $value Base array
+     * @return static
      * @throws AssertionFailedException
      */
-    public static function byArray(array $value): self
+    public static function byArray(array $value)
     {
         return new static(parent::byArrayStrictWithType($value, SnString::class)->toArray());
     }
@@ -25,9 +26,10 @@ class SnStringList extends SnBaseValueArray
      * Creates SnStringList instance by native array which includes single type.
      *
      * @param SnString[] $value Base array
+     * @return static
      * @throws AssertionFailedException
      */
-    public static function byArrayStrict(array $value): self
+    public static function byArrayStrict(array $value)
     {
         return new static(parent::byArrayStrictWithType($value, SnString::class)->toArray());
     }
@@ -37,10 +39,10 @@ class SnStringList extends SnBaseValueArray
      *
      * @param SnString[] $value Base array
      * @param string $type type of value
-     * @return SnStringList
+     * @return static
      * @throws AssertionFailedException
      */
-    public static function byArrayStrictWithType(array $value, string $type): self
+    public static function byArrayStrictWithType(array $value, string $type)
     {
         Assertion::same($type, SnString::class, '$type must be SnString');
         return new static(parent::byArrayStrictWithType($value, $type)->toArray());
@@ -50,9 +52,10 @@ class SnStringList extends SnBaseValueArray
      * Creates SnStringList instance by native string array.
      *
      * @param string[] $value
+     * @return static
      * @throws AssertionFailedException
      */
-    public static function byStringArray(array $value): self
+    public static function byStringArray(array $value)
     {
         return new static(parent::byArrayStrictWithType($value, 'string')->toArray());
     }

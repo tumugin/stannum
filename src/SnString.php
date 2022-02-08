@@ -33,9 +33,10 @@ class SnString extends SnBaseValue
      * Creates SnString instance by native string value.
      *
      * @param string $value Base value
+     * @return static
      * @throws AssertionFailedException
      */
-    public static function byString(string $value): self
+    public static function byString(string $value)
     {
         Assertion::inArray(
             mb_detect_encoding($value),
@@ -49,8 +50,9 @@ class SnString extends SnBaseValue
      * Creates SnString instance by integer value.
      *
      * @param int $value Base value
+     * @return static
      */
-    public static function byInt(int $value): self
+    public static function byInt(int $value)
     {
         return new static("{$value}");
     }
@@ -59,8 +61,9 @@ class SnString extends SnBaseValue
      * Creates SnString instance by float value.
      *
      * @param float $value Base value
+     * @return static
      */
-    public static function byFloat(float $value): self
+    public static function byFloat(float $value)
     {
         return new static("{$value}");
     }
@@ -95,8 +98,9 @@ class SnString extends SnBaseValue
      * Concat specified value and return new SnString instance.
      *
      * @param SnString $value Value to be combined
+     * @return static
      */
-    public function concat(self $value): self
+    public function concat(self $value)
     {
         return new static($this->value . $value->value);
     }
@@ -136,8 +140,10 @@ class SnString extends SnBaseValue
 
     /**
      * Returns a string with the first letter changed to uppercase.
+     *
+     * @return static
      */
-    public function capitalizeFirst(): self
+    public function capitalizeFirst()
     {
         $firstChar = mb_substr($this->value, 0, 1);
         $then = mb_substr($this->value, 1, null);
@@ -146,16 +152,20 @@ class SnString extends SnBaseValue
 
     /**
      * Returns a string with all characters changed to uppercase.
+     *
+     * @return static
      */
-    public function capitalizeAll(): self
+    public function capitalizeAll()
     {
         return new static(mb_strtoupper($this->value));
     }
 
     /**
      * Returns a string with all characters changed to lowercase.
+     *
+     * @return static
      */
-    public function downcaseAll(): self
+    public function downcaseAll()
     {
         return new static(mb_strtolower($this->value));
     }
@@ -172,8 +182,10 @@ class SnString extends SnBaseValue
 
     /**
      * Trims and returns a string.
+     *
+     * @return static
      */
-    public function trim(): self
+    public function trim()
     {
         return new static(preg_replace('/\A[\x00\s]++|[\x00\s]++\z/u', '', $this->value));
     }
@@ -216,8 +228,9 @@ class SnString extends SnBaseValue
      *
      * @param SnString $search String to search
      * @param SnString $replace String to be replaced
+     * @return static
      */
-    public function replace(self $search, self $replace): self
+    public function replace(self $search, self $replace)
     {
         return new static(str_replace($search->value, $replace->value, $this->value));
     }
@@ -227,8 +240,9 @@ class SnString extends SnBaseValue
      *
      * @param SnString $regex Regular expression to search
      * @param SnString $replace String to be replaced
+     * @return static
      */
-    public function pregReplace(self $regex, self $replace): self
+    public function pregReplace(self $regex, self $replace)
     {
         return new static(preg_replace($regex->value, $replace->value, $this->value));
     }

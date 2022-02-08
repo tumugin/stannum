@@ -28,8 +28,9 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      * Creates SnList instance by native array.
      *
      * @param array $value Base array
+     * @return static
      */
-    public static function byArray(array $value): self
+    public static function byArray(array $value)
     {
         return new static(array_values($value));
     }
@@ -38,9 +39,10 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      * Creates SnList instance by native array which includes single type.
      *
      * @param array $value Base array
+     * @return static
      * @throws AssertionFailedException
      */
-    public static function byArrayStrict(array $value): self
+    public static function byArrayStrict(array $value)
     {
         $types = [];
         foreach ($value as $v) {
@@ -63,9 +65,10 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      *
      * @param array $value Base array
      * @param string $type type of value
+     * @return static
      * @throws AssertionFailedException
      */
-    public static function byArrayStrictWithType(array $value, string $type): self
+    public static function byArrayStrictWithType(array $value, string $type)
     {
         foreach ($value as $v) {
             if (gettype($v) === 'object') {
@@ -100,8 +103,9 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      * Concat with specified lists and return new SnList instance.
      *
      * @param SnList ...$value
+     * @return static
      */
-    public function concat(self ...$value): self
+    public function concat(self ...$value)
     {
         $mergedArray = [...$this->value];
         foreach ($value as $snList) {
@@ -114,8 +118,9 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      * Filter list
      *
      * @param callable(mixed): bool $callback
+     * @return static
      */
-    public function filter(callable $callback): self
+    public function filter(callable $callback)
     {
         return new static(
             array_values(
@@ -181,8 +186,10 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
 
     /**
      * Returns the unique list
+     *
+     * @return static
      */
-    public function distinct(): self
+    public function distinct()
     {
         return new static(
             array_values(
@@ -218,8 +225,9 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      * Applies the callback to the elements
      *
      * @param callable(mixed): mixed $callback
+     * @return static
      */
-    public function map(callable $callback): self
+    public function map(callable $callback)
     {
         return new static(
             array_values(
@@ -234,8 +242,9 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      * NOTE: Callable arguments are same as usort.
      *
      * @param callable(mixed, mixed): mixed $callback
+     * @return static
      */
-    public function sort(callable $callback): self
+    public function sort(callable $callback)
     {
         $shallowCopyOfArray = $this->value;
         usort($shallowCopyOfArray, $callback);

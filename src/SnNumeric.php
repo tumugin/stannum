@@ -122,8 +122,10 @@ abstract class SnNumeric extends SnBaseValue
 
     /**
      * Absolute value
+     *
+     * @return static
      */
-    public function abs(): self
+    public function abs()
     {
         return new static(abs($this->value));
     }
