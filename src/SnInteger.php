@@ -16,9 +16,10 @@ class SnInteger extends SnNumeric
      * Creates SnInteger instance by parsable string.
      *
      * @param string $value String value can be parsed as integer. (e.g. '100')
+     * @return static
      * @throws AssertionFailedException
      */
-    public static function byString(string $value): self
+    public static function byString(string $value)
     {
         Assertion::true(is_numeric($value), 'Input $value is not valid integer.');
 
@@ -29,8 +30,9 @@ class SnInteger extends SnNumeric
      * Creates SnInteger instance by integer value.
      *
      * @param int $value
+     * @return static
      */
-    public static function byInt(int $value): self
+    public static function byInt(int $value)
     {
         return new static($value);
     }
@@ -38,9 +40,9 @@ class SnInteger extends SnNumeric
     /**
      * Absolute value
      *
-     * @return SnInteger
+     * @return static
      */
-    public function abs(): self
+    public function abs()
     {
         return parent::abs();
     }
