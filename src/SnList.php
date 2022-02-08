@@ -276,6 +276,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      * @return mixed
      * @throws Exception
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         if (!isset($this->value[$offset])) {
