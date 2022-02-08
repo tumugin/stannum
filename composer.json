@@ -1,7 +1,8 @@
 {
   "name": "tumugin/stannum",
+  "description": "Stannum makes PHP's scalar types more expressive!",
   "type": "library",
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "license": "MIT",
   "authors": [
     {
