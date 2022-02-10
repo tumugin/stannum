@@ -59,4 +59,17 @@ class SnStringList extends SnBaseValueArray
     {
         return new static(parent::byArrayStrictWithType($value, 'string')->toArray());
     }
+
+    /**
+     * Creates a string from all the elements separated using separator.
+     *
+     * @param SnString $separator the separator string to separate elements
+     * @throws AssertionFailedException
+     */
+    public function joinToString(SnString $separator): SnString
+    {
+        return SnString::byString(
+            implode($separator->toString(), $this->value)
+        );
+    }
 }
