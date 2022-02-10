@@ -10,7 +10,7 @@ use Tumugin\Stannum\SnString;
 
 class JoinToStringTest extends TestCase
 {
-    public function testJoinToString()
+    public function testJoinToString(): void
     {
         $this->assertSame(
             '藍井すず,藤宮めい,橋本あみ',
@@ -24,7 +24,7 @@ class JoinToStringTest extends TestCase
         );
     }
 
-    public function testJoinToStringWithEmptyArray()
+    public function testJoinToStringWithEmptyArray(): void
     {
         $this->assertSame(
             '',
