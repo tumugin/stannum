@@ -247,6 +247,35 @@ class SnString extends SnBaseValue
         return new static(preg_replace($regex->value, $replace->value, $this->value));
     }
 
+    /**
+     * Returns a substring that starts at the specified startIndex and continues to the end of the string.
+     *
+     * @param SnInteger $startIndex the start index
+     * @param SnInteger $endLength the maximum length of the returned string
+     * @return static
+     */
+    public function substring(SnInteger $startIndex, SnInteger $endLength)
+    {
+        return new static(
+            mb_substr($this->value, $startIndex->toInt(), $endLength->toInt())
+        );
+    }
+
+    /**
+     * Returns a subsequence of this char sequence containing the first n characters from this char sequence.
+     *
+     * Will return the entire char sequence if this char sequence is shorter.
+     *
+     * @param SnInteger $n the length of string to take
+     * @return static
+     */
+    public function take(SnInteger $n)
+    {
+        return new static(
+            mb_substr($this->value, 0, $n->toInt())
+        );
+    }
+
     public function getRawValue(): string
     {
         return $this->value;
