@@ -8,6 +8,10 @@ use Exception;
 use Tumugin\Stannum\SnFloat;
 use Tumugin\Stannum\SnInteger;
 
+/**
+ * @template T of SnFloat|SnInteger
+ * @extends SnBaseValueArray<T>
+ */
 abstract class SnNumericList extends SnBaseValueArray
 {
     /**
@@ -82,15 +86,11 @@ abstract class SnNumericList extends SnBaseValueArray
      */
     private function convertFloatOrIntegerToSnTypes($result)
     {
-        switch (gettype($result)) {
-            case 'integer':
-                return SnInteger::byInt($result);
-            case 'double':
-                return SnFloat::byFloat($result);
-            // @codeCoverageIgnoreStart
-            default:
-                throw new Exception('unhandled type.');
-            // @codeCoverageIgnoreEnd
+        if (is_integer($result)) {
+            return SnInteger::byInt($result);
+        } elseif (is_float($result)) {
+            return SnFloat::byFloat($result);
         }
+        throw new \RuntimeException('unexpected type of $result');
     }
 }

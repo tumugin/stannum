@@ -8,13 +8,16 @@ use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Tumugin\Stannum\SnString;
 
+/**
+ * @extends SnBaseValueArray<SnString>
+ */
 class SnStringList extends SnBaseValueArray
 {
     /**
      * Creates SnStringList instance by native array.
      *
      * @param SnString[] $value Base array
-     * @return static
+     * @return static<SnString>
      * @throws AssertionFailedException
      */
     public static function byArray(array $value)
@@ -26,7 +29,7 @@ class SnStringList extends SnBaseValueArray
      * Creates SnStringList instance by native array which includes single type.
      *
      * @param SnString[] $value Base array
-     * @return static
+     * @return static<SnString>
      * @throws AssertionFailedException
      */
     public static function byArrayStrict(array $value)
@@ -39,7 +42,7 @@ class SnStringList extends SnBaseValueArray
      *
      * @param SnString[] $value Base array
      * @param string $type type of value
-     * @return static
+     * @return static<SnString>
      * @throws AssertionFailedException
      */
     public static function byArrayStrictWithType(array $value, string $type)
@@ -52,12 +55,16 @@ class SnStringList extends SnBaseValueArray
      * Creates SnStringList instance by native string array.
      *
      * @param string[] $value
-     * @return static
+     * @return static<SnString>
      * @throws AssertionFailedException
      */
     public static function byStringArray(array $value)
     {
-        return new static(parent::byArrayStrictWithType($value, 'string')->toArray());
+        return new static(
+        // @phpstan-ignore-next-line
+            parent::byArrayStrictWithType($value, 'string')
+                ->toArray()
+        );
     }
 
     /**

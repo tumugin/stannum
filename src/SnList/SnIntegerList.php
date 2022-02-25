@@ -9,12 +9,16 @@ use Assert\AssertionFailedException;
 use Tumugin\Stannum\SnInteger;
 use Tumugin\Stannum\SnList;
 
+/**
+ * @extends SnNumericList<SnInteger>
+ */
 class SnIntegerList extends SnNumericList
 {
     /**
      * Creates SnIntegerList instance by native array.
      *
-     * @return static
+     * @param SnInteger[] $value
+     * @return static<SnInteger>
      * @throws AssertionFailedException
      */
     public static function byArray(array $value)
@@ -26,7 +30,7 @@ class SnIntegerList extends SnNumericList
      * Creates SnIntegerList instance by native array which includes single type.
      *
      * @param SnInteger[] $value Base array
-     * @return static
+     * @return static<SnInteger>
      * @throws AssertionFailedException
      */
     public static function byArrayStrict(array $value)
@@ -39,7 +43,7 @@ class SnIntegerList extends SnNumericList
      *
      * @param SnInteger[] $value Base array
      * @param string $type Type of value
-     * @return static
+     * @return static<SnInteger>
      * @throws AssertionFailedException
      */
     public static function byArrayStrictWithType(array $value, string $type)
@@ -52,12 +56,13 @@ class SnIntegerList extends SnNumericList
      * Creates SnFloatList instance by native integer array.
      *
      * @param int[] $value Base array
-     * @return static
+     * @return static<SnInteger>
      * @throws AssertionFailedException
      */
     public static function byIntArray(array $value)
     {
         return new static(
+        // @phpstan-ignore-next-line
             SnList::byArrayStrictWithType($value, 'integer')
                 ->map(fn(int $v) => SnInteger::byInt($v))
                 ->toArray()
@@ -74,20 +79,5 @@ class SnIntegerList extends SnNumericList
         return $this
             ->map(fn(SnInteger $v) => $v->toInt())
             ->toArray();
-    }
-
-    public function total(): SnInteger
-    {
-        return parent::total();
-    }
-
-    public function max(): SnInteger
-    {
-        return parent::max();
-    }
-
-    public function min(): SnInteger
-    {
-        return parent::min();
     }
 }
