@@ -132,7 +132,7 @@ class SnString extends SnBaseValue
      * Convert a string to a byte array
      *
      * @throws AssertionFailedException
-     * @return SnList<string>
+     * @return SnList<integer>
      */
     public function bytes(): SnList
     {
@@ -141,7 +141,7 @@ class SnString extends SnBaseValue
             throw new \RuntimeException('SnString: unpack error occurred.');
         }
 
-        return SnList::byArrayStrictWithType(array_values($unpack_result), 'string');
+        return SnList::byArrayStrictWithType(array_values($unpack_result), 'integer');
     }
 
     /**
