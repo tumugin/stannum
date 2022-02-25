@@ -17,7 +17,7 @@ abstract class SnNumeric extends SnBaseValue
      *
      * @param int|float $_value
      */
-    protected function __construct($_value)
+    final protected function __construct($_value)
     {
         $this->value = $_value;
     }

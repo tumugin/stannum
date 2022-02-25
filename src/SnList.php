@@ -11,15 +11,24 @@ use Exception;
 
 /**
  * Wrapper class of sequential array
+ *
+ * @template T
+ * @implements \IteratorAggregate<int, T>
+ * @implements \ArrayAccess<int, T>
  */
 class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
 {
+    /**
+     * @var T[] $value
+     */
     protected array $value;
 
     /**
      * internal: Creates instance by raw value.
+     *
+     * @param T[] $value
      */
-    protected function __construct(array $value)
+    final protected function __construct(array $value)
     {
         $this->value = $value;
     }
@@ -27,7 +36,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     /**
      * Creates SnList instance by native array.
      *
-     * @param array $value Base array
+     * @param T[] $value Base array
      * @return static
      */
     public static function byArray(array $value)
@@ -38,7 +47,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     /**
      * Creates SnList instance by native array which includes single type.
      *
-     * @param array $value Base array
+     * @param T[] $value Base array
      * @return static
      * @throws AssertionFailedException
      */
@@ -63,7 +72,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     /**
      * Creates SnList instance by native array which includes only one specified type.
      *
-     * @param array $value Base array
+     * @param T[] $value Base array
      * @param string $type type of value
      * @return static
      * @throws AssertionFailedException
@@ -85,6 +94,8 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
 
     /**
      * Converts to native array.
+     *
+     * @return T[]
      */
     public function toArray(): array
     {
@@ -102,7 +113,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     /**
      * Concat with specified lists and return new SnList instance.
      *
-     * @param SnList ...$value
+     * @param SnList<T> ...$value
      * @return static
      */
     public function concat(self ...$value)
@@ -145,6 +156,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      *
      * @param int $index index of item
      * @throws AssertionFailedException
+     * @return T
      */
     public function get(int $index)
     {
@@ -214,6 +226,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      * Returns the last item
      *
      * @throws AssertionFailedException
+     * @return T
      */
     public function last()
     {
@@ -224,8 +237,9 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     /**
      * Applies the callback to the elements
      *
-     * @param callable(mixed): mixed $callback
-     * @return static
+     * @template X
+     * @param callable(mixed): X $callback
+     * @return static<X>
      */
     public function map(callable $callback)
     {
@@ -285,16 +299,28 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
         return $this->value[$offset];
     }
 
+    /**
+     * @param int $offset
+     * @param T $value
+     * @throws Exception
+     */
     public function offsetSet($offset, $value): void
     {
         throw new Exception('Set is not allowed for immutable SnList.');
     }
 
+    /**
+     * @param int $offset
+     * @throws Exception
+     */
     public function offsetUnset($offset): void
     {
         throw new Exception('Unset is not allowed for immutable SnList.');
     }
 
+    /**
+     * @return ArrayIterator<int, T>
+     */
     public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->value);

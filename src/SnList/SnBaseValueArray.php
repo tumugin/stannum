@@ -9,6 +9,10 @@ use Assert\AssertionFailedException;
 use Tumugin\Stannum\SnBaseValue;
 use Tumugin\Stannum\SnList;
 
+/**
+ * @template T
+ * @extends SnList<T>
+ */
 abstract class SnBaseValueArray extends SnList
 {
     /**

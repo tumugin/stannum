@@ -14,7 +14,7 @@ class SnString extends SnBaseValue
 {
     protected string $value;
 
-    protected function __construct(string $value)
+    final protected function __construct(string $value)
     {
         $this->value = $value;
     }
@@ -132,10 +132,16 @@ class SnString extends SnBaseValue
      * Convert a string to a byte array
      *
      * @throws AssertionFailedException
+     * @return SnList<integer>
      */
     public function bytes(): SnList
     {
-        return SnList::byArrayStrict(array_values(unpack('C*', $this->value)));
+        $unpack_result = unpack('C*', $this->value);
+        if ($unpack_result === false) {
+            throw new \RuntimeException('SnString: unpack error occurred.');
+        }
+
+        return SnList::byArrayStrictWithType(array_values($unpack_result), 'integer');
     }
 
     /**
@@ -174,10 +180,11 @@ class SnString extends SnBaseValue
      * Returns an array of strings broken down into characters, one by one.
      *
      * @throws AssertionFailedException
+     * @return SnList<string>
      */
     public function chars(): SnList
     {
-        return SnList::byArrayStrict(mb_str_split($this->value));
+        return SnList::byArrayStrictWithType(mb_str_split($this->value), 'string');
     }
 
     /**
@@ -187,7 +194,12 @@ class SnString extends SnBaseValue
      */
     public function trim()
     {
-        return new static(preg_replace('/\A[\x00\s]++|[\x00\s]++\z/u', '', $this->value));
+        $preg_replace_result = preg_replace('/\A[\x00\s]++|[\x00\s]++\z/u', '', $this->value);
+        if ($preg_replace_result === null) {
+            throw new \RuntimeException('SnString: preg_replace error occurred.');
+        }
+
+        return new static($preg_replace_result);
     }
 
     /**
@@ -244,7 +256,12 @@ class SnString extends SnBaseValue
      */
     public function pregReplace(self $regex, self $replace)
     {
-        return new static(preg_replace($regex->value, $replace->value, $this->value));
+        $preg_replace_result = preg_replace($regex->value, $replace->value, $this->value);
+        if ($preg_replace_result === null) {
+            throw new \RuntimeException('SnString: preg_replace error occurred.');
+        }
+
+        return new static($preg_replace_result);
     }
 
     /**

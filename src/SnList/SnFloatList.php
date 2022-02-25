@@ -9,13 +9,17 @@ use Assert\AssertionFailedException;
 use Tumugin\Stannum\SnFloat;
 use Tumugin\Stannum\SnList;
 
+/**
+ * @extends SnNumericList<SnFloat>
+ */
 class SnFloatList extends SnNumericList
 {
     /**
      * Creates SnFloatList instance by native array.
      *
+     * @param SnFloat[] $value
+     * @return static<SnFloat>
      * @throws AssertionFailedException
-     * @return static
      */
     public static function byArray(array $value)
     {
@@ -26,7 +30,7 @@ class SnFloatList extends SnNumericList
      * Creates SnFloatList instance by native array which includes single type.
      *
      * @param SnFloat[] $value Base array
-     * @return static
+     * @return static<SnFloat>
      * @throws AssertionFailedException
      */
     public static function byArrayStrict(array $value)
@@ -39,7 +43,7 @@ class SnFloatList extends SnNumericList
      *
      * @param SnFloat[] $value Base array
      * @param string $type type of value
-     * @return static
+     * @return static<SnFloat>
      * @throws AssertionFailedException
      */
     public static function byArrayStrictWithType(array $value, string $type)
@@ -52,12 +56,13 @@ class SnFloatList extends SnNumericList
      * Creates SnFloatList instance by native float array.
      *
      * @param float[] $value
-     * @return static
+     * @return static<SnFloat>
      * @throws AssertionFailedException
      */
     public static function byFloatArray(array $value)
     {
         return new static(
+        // @phpstan-ignore-next-line
             SnList::byArrayStrictWithType($value, 'double')
                 ->map(fn(float $v) => SnFloat::byFloat($v))
                 ->toArray()
@@ -74,25 +79,5 @@ class SnFloatList extends SnNumericList
         return $this
             ->map(fn(SnFloat $v) => $v->toFloat())
             ->toArray();
-    }
-
-    public function total(): SnFloat
-    {
-        return parent::total();
-    }
-
-    public function max(): SnFloat
-    {
-        return parent::max();
-    }
-
-    public function min(): SnFloat
-    {
-        return parent::min();
-    }
-
-    public function average(): SnFloat
-    {
-        return parent::average();
     }
 }
