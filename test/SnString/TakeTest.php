@@ -23,6 +23,9 @@ class TakeTest extends TestCase
         );
     }
 
+    /**
+     * @return array{0:string, 1:string, 2:int}[]
+     */
     public function provideTestStrings(): array
     {
         return [

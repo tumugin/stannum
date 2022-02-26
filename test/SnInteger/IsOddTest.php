@@ -20,6 +20,9 @@ class IsOddTest extends TestCase
         );
     }
 
+    /**
+     * @return array{0:int, 1:bool}[]
+     */
     public function providesIntegers(): array
     {
         return [

@@ -17,6 +17,9 @@ class TrimTest extends TestCase
         $this->assertSame($expected, SnString::byString($testString)->trim()->toString());
     }
 
+    /**
+     * @return array{0:string, 1:string}[]
+     */
     public function provideStrings(): array
     {
         return [

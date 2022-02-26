@@ -26,6 +26,9 @@ class ReplaceTest extends TestCase
         );
     }
 
+    /**
+     * @return array{0:string, 1:string, 2:string, 3:string}[]
+     */
     public function provideStrings(): array
     {
         return [

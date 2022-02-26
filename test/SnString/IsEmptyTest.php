@@ -15,6 +15,9 @@ class IsEmptyTest extends TestCase
         $this->assertSame($expected, SnString::byString($testString)->isEmpty());
     }
 
+    /**
+     * @return array{0:string, 1:bool}[]
+     */
     public function provideStrings(): array
     {
         return [

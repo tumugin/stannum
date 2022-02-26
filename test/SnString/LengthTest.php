@@ -18,6 +18,9 @@ class LengthTest extends TestCase
         $this->assertSame($expectedLength, $actual);
     }
 
+    /**
+     * @return array{0:string, 1:int}[]
+     */
     public function provideTestStrings(): array
     {
         return [
