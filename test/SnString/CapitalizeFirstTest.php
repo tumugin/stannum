@@ -20,6 +20,9 @@ class CapitalizeFirstTest extends TestCase
         );
     }
 
+    /**
+     * @return array{0:string, 1:string}[]
+     */
     public function provideTestStrings(): array
     {
         return [

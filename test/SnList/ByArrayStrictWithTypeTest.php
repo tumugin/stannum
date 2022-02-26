@@ -12,6 +12,7 @@ use Tumugin\Stannum\SnString;
 class ByArrayStrictWithTypeTest extends TestCase
 {
     /**
+     * @param mixed[] $testArray
      * @dataProvider provideErrorCase
      */
     public function testWithErrorCase(array $testArray, string $expectedType): void
@@ -20,6 +21,9 @@ class ByArrayStrictWithTypeTest extends TestCase
         SnList::byArrayStrictWithType($testArray, $expectedType);
     }
 
+    /**
+     * @return array{0:mixed[], 1:string}[]
+     */
     public function provideErrorCase(): array
     {
         return [
@@ -29,6 +33,7 @@ class ByArrayStrictWithTypeTest extends TestCase
     }
 
     /**
+     * @param mixed[] $testArray
      * @dataProvider provideSuccessfulCase
      */
     public function testWithSuccessfulCase(array $testArray, string $expectedType): void
@@ -40,6 +45,9 @@ class ByArrayStrictWithTypeTest extends TestCase
         );
     }
 
+    /**
+     * @return array{0:mixed[], 1:string}[]
+     */
     public function provideSuccessfulCase(): array
     {
         return [

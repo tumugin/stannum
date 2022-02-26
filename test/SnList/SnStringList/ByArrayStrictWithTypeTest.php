@@ -36,6 +36,7 @@ class ByArrayStrictWithTypeTest extends TestCase
     {
         $this->expectException(AssertionFailedException::class);
         SnStringList::byArrayStrictWithType(
+        // @phpstan-ignore-next-line
             ['藍井すず'],
             SnString::class
         );

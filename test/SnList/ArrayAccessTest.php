@@ -31,6 +31,7 @@ class ArrayAccessTest extends TestCase
     {
         $testArray = SnList::byArray(['a', 'b', 'c', 'd']);
         $this->expectException(\Exception::class);
+        // @phpstan-ignore-next-line
         $testArray[4];
     }
 

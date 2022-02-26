@@ -21,6 +21,9 @@ class ContainsTest extends TestCase
         );
     }
 
+    /**
+     * @return array{0:bool, 1:SnStringList, 2:SnString}[]
+     */
     public function providesTestArray(): array
     {
         return [

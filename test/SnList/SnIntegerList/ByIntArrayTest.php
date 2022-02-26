@@ -21,6 +21,7 @@ class ByIntArrayTest extends TestCase
     public function testWrongTypeArray(): void
     {
         $this->expectException(AssertionFailedException::class);
+        // @phpstan-ignore-next-line
         SnIntegerList::byIntArray(['藍井すず', 1, 2, 3]);
     }
 }
