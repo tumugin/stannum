@@ -18,6 +18,9 @@ class DowncaseAllTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
+    /**
+     * @return array{0:string, 1:string}[]
+     */
     public function provideTestStrings(): array
     {
         return [

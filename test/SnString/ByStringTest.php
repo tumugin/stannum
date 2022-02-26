@@ -25,6 +25,9 @@ class ByStringTest extends TestCase
         SnString::byString("\x97\x95\x88\xe4\x82\xb7\x82\xb8");
     }
 
+    /**
+     * @return array{0: string}[]
+     */
     public function provideTestValidUtf8Strings(): array
     {
         return [

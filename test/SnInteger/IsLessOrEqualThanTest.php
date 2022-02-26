@@ -20,6 +20,9 @@ class IsLessOrEqualThanTest extends TestCase
         );
     }
 
+    /**
+     * @return array{0:int, 1:int, 2:bool}[]
+     */
     public function providesTestInteger(): array
     {
         return [

@@ -10,6 +10,7 @@ use Tumugin\Stannum\SnString;
 class CharsTest extends TestCase
 {
     /**
+     * @param string[] $expected
      * @dataProvider provideStrings
      */
     public function testChars(string $testString, array $expected): void
@@ -18,6 +19,9 @@ class CharsTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
+    /**
+     * @return array{0:string, 1:string[]}[]
+     */
     public function provideStrings(): array
     {
         return [

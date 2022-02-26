@@ -57,6 +57,7 @@ class ByArrayTest extends TestCase
     }
 
     /**
+     * @param SnFloat[] $fromValue
      * @dataProvider providesErrorCases
      */
     public function testByArrayErrorCase(array $fromValue): void
@@ -66,6 +67,7 @@ class ByArrayTest extends TestCase
     }
 
     /**
+     * @param SnFloat[] $fromValue
      * @dataProvider providesErrorCases
      */
     public function testByArrayStrictErrorCase(array $fromValue): void
@@ -75,6 +77,7 @@ class ByArrayTest extends TestCase
     }
 
     /**
+     * @param SnFloat[] $fromValue
      * @dataProvider providesErrorCasesWithType
      */
     public function testByArrayStrictWithTypeErrorCase(array $fromValue, string $type): void
@@ -83,6 +86,9 @@ class ByArrayTest extends TestCase
         SnFloatList::byArrayStrictWithType($fromValue, $type);
     }
 
+    /**
+     * @return array{0:float[]|string[]}[]
+     */
     public function providesErrorCases(): array
     {
         return [
@@ -95,6 +101,9 @@ class ByArrayTest extends TestCase
         ];
     }
 
+    /**
+     * @return array{0:float[]|string[]|SnFloat[], 1:string}[]
+     */
     public function providesErrorCasesWithType(): array
     {
         return [

@@ -20,6 +20,9 @@ class ContainsTest extends TestCase
         );
     }
 
+    /**
+     * @return array{0:string, 1:string, 2:bool}[]
+     */
     public function providesTestStrings(): array
     {
         return [

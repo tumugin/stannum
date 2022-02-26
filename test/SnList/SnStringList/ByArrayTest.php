@@ -22,6 +22,7 @@ class ByArrayTest extends TestCase
     public function testByArrayErrorCase(): void
     {
         $this->expectException(AssertionFailedException::class);
+        // @phpstan-ignore-next-line
         SnStringList::byArray(['藍井すず']);
     }
 }
