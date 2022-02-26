@@ -18,7 +18,7 @@ abstract class SnBaseValueArray extends SnList
     /**
      * Returns the value specified is included in list
      *
-     * @param SnBaseValue $needle Value to find in the list
+     * @param T $needle Value to find in the list
      * @throws AssertionFailedException
      */
     public function contains($needle): bool

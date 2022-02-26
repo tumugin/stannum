@@ -6,6 +6,8 @@ namespace Tumugin\Stannum;
 
 /**
  * Base class of SnInteger and SnFloat.
+ *
+ * @extends SnBaseValue<int|float>
  */
 abstract class SnNumeric extends SnBaseValue
 {
