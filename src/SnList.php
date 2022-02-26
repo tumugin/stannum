@@ -55,7 +55,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     {
         $types = [];
         foreach ($value as $v) {
-            if (gettype($v) === 'object') {
+            if (is_object($v)) {
                 $types[] = get_class($v);
                 continue;
             }
@@ -80,7 +80,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     public static function byArrayStrictWithType(array $value, string $type)
     {
         foreach ($value as $v) {
-            if (gettype($v) === 'object') {
+            if (is_object($v)) {
                 $actualType = get_class($v);
             } else {
                 $actualType = gettype($v);
@@ -128,7 +128,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     /**
      * Filter list
      *
-     * @param callable(mixed): bool $callback
+     * @param callable(T): bool $callback
      * @return static
      */
     public function filter(callable $callback)
@@ -143,8 +143,8 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     /**
      * Find and return the first item or null.
      *
-     * @param callable(mixed): bool $callback
-     * @return null|mixed
+     * @param callable(T): bool $callback
+     * @return null|T
      */
     public function find(callable $callback)
     {
@@ -171,7 +171,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      * If the index is out of range, will return null.
      *
      * @param int $index
-     * @return mixed|null
+     * @return T|null
      */
     public function getOrNull(int $index)
     {
@@ -189,7 +189,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     /**
      * Returns the value specified is included in list
      *
-     * @param mixed $needle value to find in the list
+     * @param T $needle value to find in the list
      */
     public function contains($needle): bool
     {
@@ -213,7 +213,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     /**
      * Returns the first item
      *
-     * @return mixed
+     * @return T
      * @throws AssertionFailedException
      */
     public function first()
@@ -238,7 +238,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      * Applies the callback to the elements
      *
      * @template X
-     * @param callable(mixed): X $callback
+     * @param callable(T): X $callback
      * @return static<X>
      */
     public function map(callable $callback)
@@ -255,7 +255,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      *
      * NOTE: Callable arguments are same as usort.
      *
-     * @param callable(mixed, mixed): mixed $callback
+     * @param callable(T, T): int $callback
      * @return static
      */
     public function sort(callable $callback)
@@ -287,7 +287,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      * Returns the value of offset
      *
      * @param int $offset Offset value
-     * @return mixed
+     * @return T
      * @throws Exception
      */
     #[\ReturnTypeWillChange]

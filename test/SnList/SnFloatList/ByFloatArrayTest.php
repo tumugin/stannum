@@ -20,7 +20,7 @@ class ByFloatArrayTest extends TestCase
 
     public function testWrongTypeArray(): void
     {
-        $this->expectException(AssertionFailedException::class);
+        $this->expectException(\TypeError::class);
         // @phpstan-ignore-next-line
         SnFLoatList::byFloatArray(['藍井すず', 1.1, 2.2, 3.3]);
     }

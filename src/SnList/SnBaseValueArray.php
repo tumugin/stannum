@@ -10,7 +10,7 @@ use Tumugin\Stannum\SnBaseValue;
 use Tumugin\Stannum\SnList;
 
 /**
- * @template T
+ * @template T of SnBaseValue
  * @extends SnList<T>
  */
 abstract class SnBaseValueArray extends SnList
@@ -18,7 +18,7 @@ abstract class SnBaseValueArray extends SnList
     /**
      * Returns the value specified is included in list
      *
-     * @param SnBaseValue $needle Value to find in the list
+     * @param T $needle Value to find in the list
      * @throws AssertionFailedException
      */
     public function contains($needle): bool

@@ -9,6 +9,8 @@ use Assert\AssertionFailedException;
 
 /**
  * Wrapper class of string value
+ *
+ * @extends SnBaseValue<string>
  */
 class SnString extends SnBaseValue
 {
