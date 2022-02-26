@@ -23,6 +23,9 @@ class SubstringTest extends TestCase
         );
     }
 
+    /**
+     * @return array{0:string, 1:string, 2:int, 3:int}[]
+     */
     public function provideTestStrings(): array
     {
         return [
