@@ -57,15 +57,13 @@ class SnIntegerList extends SnNumericList
      *
      * @param int[] $value Base array
      * @return static<SnInteger>
-     * @throws AssertionFailedException
      */
     public static function byIntArray(array $value)
     {
         return new static(
-        // @phpstan-ignore-next-line
-            SnList::byArrayStrictWithType($value, 'integer')
-                ->map(fn(int $v) => SnInteger::byInt($v))
-                ->toArray()
+            array_values(
+                array_map(fn(int $v) => SnInteger::byInt($v), $value)
+            )
         );
     }
 

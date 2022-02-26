@@ -7,7 +7,6 @@ namespace Tumugin\Stannum\SnList;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Tumugin\Stannum\SnFloat;
-use Tumugin\Stannum\SnList;
 
 /**
  * @extends SnNumericList<SnFloat>
@@ -57,15 +56,13 @@ class SnFloatList extends SnNumericList
      *
      * @param float[] $value
      * @return static<SnFloat>
-     * @throws AssertionFailedException
      */
     public static function byFloatArray(array $value)
     {
         return new static(
-        // @phpstan-ignore-next-line
-            SnList::byArrayStrictWithType($value, 'double')
-                ->map(fn(float $v) => SnFloat::byFloat($v))
-                ->toArray()
+            array_values(
+                array_map(fn(float $v) => SnFloat::byFloat($v), $value)
+            )
         );
     }
 

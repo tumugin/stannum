@@ -55,7 +55,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     {
         $types = [];
         foreach ($value as $v) {
-            if (gettype($v) === 'object') {
+            if (is_object($v)) {
                 $types[] = get_class($v);
                 continue;
             }
@@ -80,7 +80,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     public static function byArrayStrictWithType(array $value, string $type)
     {
         foreach ($value as $v) {
-            if (gettype($v) === 'object') {
+            if (is_object($v)) {
                 $actualType = get_class($v);
             } else {
                 $actualType = gettype($v);
@@ -238,7 +238,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      * Applies the callback to the elements
      *
      * @template X
-     * @param callable(mixed): X $callback
+     * @param callable(T): X $callback
      * @return static<X>
      */
     public function map(callable $callback)
@@ -255,7 +255,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      *
      * NOTE: Callable arguments are same as usort.
      *
-     * @param callable(mixed, mixed): mixed $callback
+     * @param callable(T, T): int $callback
      * @return static
      */
     public function sort(callable $callback)

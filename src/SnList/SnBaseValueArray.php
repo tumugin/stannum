@@ -10,7 +10,7 @@ use Tumugin\Stannum\SnBaseValue;
 use Tumugin\Stannum\SnList;
 
 /**
- * @template T
+ * @template T of SnBaseValue
  * @extends SnList<T>
  */
 abstract class SnBaseValueArray extends SnList
