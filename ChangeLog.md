@@ -1,3 +1,12 @@
+# 0.3.1
+- Added PHPStan support
+  - https://github.com/tumugin/stannum/pull/35
+  - https://github.com/tumugin/stannum/pull/36
+  - https://github.com/tumugin/stannum/pull/37
+  - https://github.com/tumugin/stannum/pull/38
+  - https://github.com/tumugin/stannum/pull/39
+  - https://github.com/tumugin/stannum/pull/40
+
 # 0.3.0
 - Add joinToString API to SnStringList(https://github.com/tumugin/stannum/pull/33)
 - Add substring and take API to SnString(https://github.com/tumugin/stannum/pull/32)
