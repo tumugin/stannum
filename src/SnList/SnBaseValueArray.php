@@ -24,7 +24,7 @@ abstract class SnBaseValueArray extends SnList
     public function contains($needle): bool
     {
         Assertion::true(
-            getType($needle) === 'object' && is_subclass_of($needle, SnBaseValue::class),
+            getType($needle) === 'object' && $needle instanceof SnBaseValue,
             '$needle must be type of SnBaseValue'
         );
 

@@ -18,7 +18,6 @@ abstract class SnNumericList extends SnBaseValueArray
      * Return the total value of the array
      *
      * @return SnFloat|SnInteger
-     * @throws Exception
      */
     public function total()
     {
@@ -34,7 +33,6 @@ abstract class SnNumericList extends SnBaseValueArray
      * Return the average value of the array
      *
      * @return SnFloat|SnInteger
-     * @throws Exception
      */
     public function average()
     {
@@ -51,7 +49,6 @@ abstract class SnNumericList extends SnBaseValueArray
      * Return the maximum value of the array
      *
      * @return SnFloat|SnInteger
-     * @throws Exception
      */
     public function max()
     {
@@ -67,7 +64,6 @@ abstract class SnNumericList extends SnBaseValueArray
      * Return the minimum value of the array
      *
      * @return SnFloat|SnInteger
-     * @throws Exception
      */
     public function min()
     {
@@ -82,7 +78,6 @@ abstract class SnNumericList extends SnBaseValueArray
     /**
      * @param integer|float $result
      * @return SnFloat|SnInteger
-     * @throws Exception
      */
     private function convertFloatOrIntegerToSnTypes($result)
     {
