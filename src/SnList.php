@@ -36,8 +36,10 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     /**
      * Creates SnList instance by native array.
      *
-     * @param T[] $value Base array
+     * @template X
+     * @param X[] $value Base array
      * @return static
+     * @phpstan-return SnList<X>
      */
     public static function byArray(array $value)
     {
@@ -47,8 +49,10 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     /**
      * Creates SnList instance by native array which includes single type.
      *
-     * @param T[] $value Base array
+     * @template X
+     * @param X[] $value Base array
      * @return static
+     * @phpstan-return SnList<X>
      * @throws AssertionFailedException
      */
     public static function byArrayStrict(array $value)
@@ -72,9 +76,11 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     /**
      * Creates SnList instance by native array which includes only one specified type.
      *
-     * @param T[] $value Base array
+     * @template X
+     * @param X[] $value Base array
      * @param string $type type of value
      * @return static
+     * @phpstan-return SnList<X>
      * @throws AssertionFailedException
      */
     public static function byArrayStrictWithType(array $value, string $type)
@@ -288,13 +294,12 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      *
      * @param int $offset Offset value
      * @return T
-     * @throws Exception
      */
     #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         if (!isset($this->value[$offset])) {
-            throw new Exception('Index out of range.');
+            throw new \RuntimeException('Index out of range.');
         }
         return $this->value[$offset];
     }
@@ -302,20 +307,18 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
     /**
      * @param int $offset
      * @param T $value
-     * @throws Exception
      */
     public function offsetSet($offset, $value): void
     {
-        throw new Exception('Set is not allowed for immutable SnList.');
+        throw new \RuntimeException('Set is not allowed for immutable SnList.');
     }
 
     /**
      * @param int $offset
-     * @throws Exception
      */
     public function offsetUnset($offset): void
     {
-        throw new Exception('Unset is not allowed for immutable SnList.');
+        throw new \RuntimeException('Unset is not allowed for immutable SnList.');
     }
 
     /**
