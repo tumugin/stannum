@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tumugin\Stannum;
 
 use Tumugin\Stannum\SnList\SnStringList;
@@ -18,11 +20,17 @@ class SnPregMatchResult
         $this->matchGroups = $matchGroups;
     }
 
+    /**
+     * Returns the full match text.
+     */
     public function getMatch(): SnString
     {
         return $this->match;
     }
 
+    /**
+     * Returns all match group texts.
+     */
     public function getMatchGroups(): SnStringList
     {
         return $this->matchGroups;
