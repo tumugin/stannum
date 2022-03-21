@@ -276,7 +276,7 @@ class SnString extends SnBaseValue
     {
         $preg_match_result = preg_match($regex->value, $this->value);
         if ($preg_match_result === false) {
-            throw new \RuntimeException('SnString: preg_replace error occurred.');
+            throw new \RuntimeException('SnString: preg_match error occurred.');
         }
 
         return $preg_match_result === 1;
@@ -295,7 +295,7 @@ class SnString extends SnBaseValue
         $preg_match_result = preg_match($regex->value, $this->value, $result_array);
 
         if ($preg_match_result === false) {
-            throw new \RuntimeException('SnString: preg_replace error occurred.');
+            throw new \RuntimeException('SnString: preg_match error occurred.');
         }
 
         if ($preg_match_result === 0) {
