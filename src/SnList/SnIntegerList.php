@@ -7,7 +7,6 @@ namespace Tumugin\Stannum\SnList;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Tumugin\Stannum\SnInteger;
-use Tumugin\Stannum\SnList;
 
 /**
  * @extends SnNumericList<SnInteger>

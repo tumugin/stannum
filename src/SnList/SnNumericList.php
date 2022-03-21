@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tumugin\Stannum\SnList;
 
-use Exception;
 use Tumugin\Stannum\SnFloat;
 use Tumugin\Stannum\SnInteger;
 

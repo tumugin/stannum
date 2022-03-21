@@ -7,7 +7,6 @@ namespace Tumugin\Stannum;
 use ArrayIterator;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
-use Exception;
 
 /**
  * Wrapper class of sequential array
