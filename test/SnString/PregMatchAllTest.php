@@ -15,6 +15,11 @@ class PregMatchAllTest extends TestCase
         $matches = $testString->pregMatchAll(
             SnString::byString('/^(藍井すず).*(はかわいい)/u')
         );
+
+        if ($matches === null) {
+            throw new \RuntimeException('invalid condition.');
+        }
+
         $this->assertSame(
             '藍井すずちゃんはかわいい',
             $matches->getMatch()->toString()
