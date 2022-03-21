@@ -6,6 +6,7 @@ namespace Tumugin\Stannum;
 
 use Assert\Assertion;
 use Assert\AssertionFailedException;
+use Tumugin\Stannum\SnList\SnStringList;
 
 /**
  * Wrapper class of string value
@@ -133,8 +134,8 @@ class SnString extends SnBaseValue
     /**
      * Convert a string to a byte array
      *
-     * @throws AssertionFailedException
      * @return SnList<integer>
+     * @throws AssertionFailedException
      */
     public function bytes(): SnList
     {
@@ -181,8 +182,8 @@ class SnString extends SnBaseValue
     /**
      * Returns an array of strings broken down into characters, one by one.
      *
-     * @throws AssertionFailedException
      * @return SnList<string>
+     * @throws AssertionFailedException
      */
     public function chars(): SnList
     {
@@ -264,6 +265,50 @@ class SnString extends SnBaseValue
         }
 
         return new static($preg_replace_result);
+    }
+
+    /**
+     * Search for string with regular expressions and returns matches or not.
+     *
+     * @param SnString $regex Regular expression to search
+     */
+    public function pregMatches(self $regex): bool
+    {
+        $preg_match_result = preg_match($regex->value, $this->value);
+        if ($preg_match_result === false) {
+            throw new \RuntimeException('SnString: preg_replace error occurred.');
+        }
+
+        return $preg_match_result === 1;
+    }
+
+    /**
+     * Search for string with regular expressions and returns the result.
+     *
+     * @param SnString $regex Regular expression to search
+     * @throws AssertionFailedException
+     * @return SnPregMatchResult|null Will return null if nothing matches
+     */
+    public function pregMatchAll(self $regex): ?SnPregMatchResult
+    {
+        $result_array = [];
+        $preg_match_result = preg_match($regex->value, $this->value, $result_array);
+
+        if ($preg_match_result === false) {
+            throw new \RuntimeException('SnString: preg_replace error occurred.');
+        }
+
+        if ($preg_match_result === 0) {
+            return null;
+        }
+
+        $match_string = $result_array[0];
+        unset($result_array[0]);
+
+        return new SnPregMatchResult(
+            SnString::byString($match_string),
+            SnStringList::byStringArray($result_array)
+        );
     }
 
     /**
