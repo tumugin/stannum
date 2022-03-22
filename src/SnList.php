@@ -38,7 +38,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      * @template X
      * @param X[] $value Base array
      * @return static
-     * @phpstan-return SnList<X>
+     * @phpstan-return static<X>
      */
     public static function byArray(array $value)
     {
@@ -51,7 +51,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      * @template X
      * @param X[] $value Base array
      * @return static
-     * @phpstan-return SnList<X>
+     * @phpstan-return static<X>
      * @throws AssertionFailedException
      */
     public static function byArrayStrict(array $value)
@@ -79,7 +79,7 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      * @param X[] $value Base array
      * @param string $type type of value
      * @return static
-     * @phpstan-return SnList<X>
+     * @phpstan-return static<X>
      * @throws AssertionFailedException
      */
     public static function byArrayStrictWithType(array $value, string $type)
