@@ -26,7 +26,7 @@ class PregMatchAllTest extends TestCase
         );
         $this->assertSame(
             ['藍井すず', 'はかわいい'],
-            $matches->getMatchGroups()->toArray()
+            $matches->getMatchGroups()->toStringArray()
         );
     }
 

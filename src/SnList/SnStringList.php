@@ -61,8 +61,8 @@ class SnStringList extends SnBaseValueArray
     public static function byStringArray(array $value)
     {
         return new static(
-        // @phpstan-ignore-next-line
             parent::byArrayStrictWithType($value, 'string')
+                ->map(fn(string $s) => SnString::byString($s))
                 ->toArray()
         );
     }
@@ -78,5 +78,17 @@ class SnStringList extends SnBaseValueArray
         return SnString::byString(
             implode($separator->toString(), $this->value)
         );
+    }
+
+    /**
+     * Returns raw string array
+     *
+     * @return string[]
+     */
+    public function toStringArray(): array
+    {
+        return $this
+            ->map(fn(SnString $s) => $s->toString())
+            ->toArray();
     }
 }
