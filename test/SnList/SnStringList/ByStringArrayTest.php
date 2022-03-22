@@ -21,7 +21,7 @@ class ByStringArrayTest extends TestCase
                 '藍井すず',
                 '藤宮めい',
                 '橋本あみ',
-            ])->toArray()
+            ])->toStringArray()
         );
     }
 }
