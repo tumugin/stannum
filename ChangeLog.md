@@ -1,3 +1,8 @@
+# 0.4.0
+- Fixed wrong PHPStan annotations of SnList(https://github.com/tumugin/stannum/pull/44)
+- Fixed SnString exception text.(https://github.com/tumugin/stannum/pull/43)
+- Implemented pregMatches and pregMatchAll on SnString(https://github.com/tumugin/stannum/pull/42)
+
 # 0.3.1
 - Added PHPStan support
   - https://github.com/tumugin/stannum/pull/35
