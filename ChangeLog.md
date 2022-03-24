@@ -1,3 +1,8 @@
+# 0.5.0
+- Fixed issue SnStringList::byStringArray not working
+- Added `toStringArray` to SnStringList
+  - https://github.com/tumugin/stannum/pull/47
+
 # 0.4.0
 - Fixed wrong PHPStan annotations of SnList(https://github.com/tumugin/stannum/pull/44)
 - Fixed SnString exception text.(https://github.com/tumugin/stannum/pull/43)
