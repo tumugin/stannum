@@ -191,6 +191,20 @@ class SnString extends SnBaseValue
     }
 
     /**
+     * Split string with specified separator
+     *
+     * @param SnString $separator The string to separete with
+     * @throws AssertionFailedException
+     */
+    public function split(self $separator): SnStringList
+    {
+        if ($separator->value === '') {
+            throw new \RuntimeException('SnString: separator value must not be empty.');
+        }
+        return SnStringList::byStringArray(explode($separator->value, $this->value));
+    }
+
+    /**
      * Trims and returns a string.
      *
      * @return static
