@@ -6,6 +6,7 @@ namespace Tumugin\Stannum\SnList;
 
 use Assert\Assertion;
 use Assert\AssertionFailedException;
+use Tumugin\Stannum\SnBaseValue;
 use Tumugin\Stannum\SnFloat;
 
 /**
@@ -76,5 +77,22 @@ class SnFloatList extends SnNumericList
         return $this
             ->map(fn(SnFloat $v) => $v->toFloat())
             ->toArray();
+    }
+
+    /**
+     * Returns the unique list
+     *
+     * @return static
+     */
+    public function distinct()
+    {
+        $uniqueRawValues = array_values(
+            array_unique(
+                $this->map(
+                    fn(SnBaseValue $baseValue) => $baseValue->getRawValue()
+                )->toArray()
+            )
+        );
+        return static::byFloatArray($uniqueRawValues);
     }
 }
