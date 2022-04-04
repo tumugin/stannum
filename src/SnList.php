@@ -7,6 +7,7 @@ namespace Tumugin\Stannum;
 use ArrayIterator;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
+use Tumugin\Stannum\SnList\SnListConvertable;
 
 /**
  * Wrapper class of sequential array
@@ -17,6 +18,8 @@ use Assert\AssertionFailedException;
  */
 class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
 {
+    use SnListConvertable;
+
     /**
      * @var T[] $value
      */
@@ -244,11 +247,11 @@ class SnList implements \Countable, \ArrayAccess, \IteratorAggregate
      *
      * @template X
      * @param callable(T): X $callback
-     * @return static<X>
+     * @return SnList<X>
      */
-    public function map(callable $callback)
+    public function map(callable $callback): SnList
     {
-        return new static(
+        return new SnList(
             array_values(
                 array_map($callback, $this->value)
             )
