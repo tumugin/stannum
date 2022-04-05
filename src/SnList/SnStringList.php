@@ -104,7 +104,7 @@ class SnStringList extends SnBaseValueArray
         $uniqueRawValues = array_values(
             array_unique(
                 $this->map(
-                    fn(SnBaseValue $baseValue) => $baseValue->getRawValue()
+                    fn(SnString $value) => $value->toString()
                 )->toArray()
             )
         );

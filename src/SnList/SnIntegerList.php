@@ -6,7 +6,6 @@ namespace Tumugin\Stannum\SnList;
 
 use Assert\Assertion;
 use Assert\AssertionFailedException;
-use Tumugin\Stannum\SnBaseValue;
 use Tumugin\Stannum\SnInteger;
 
 /**
@@ -89,7 +88,7 @@ class SnIntegerList extends SnNumericList
         $uniqueRawValues = array_values(
             array_unique(
                 $this->map(
-                    fn(SnBaseValue $baseValue) => $baseValue->getRawValue()
+                    fn(SnInteger $value) => $value->toInt()
                 )->toArray()
             )
         );
