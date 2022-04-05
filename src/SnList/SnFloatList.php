@@ -77,4 +77,21 @@ class SnFloatList extends SnNumericList
             ->map(fn(SnFloat $v) => $v->toFloat())
             ->toArray();
     }
+
+    /**
+     * Returns the unique list
+     *
+     * @return static
+     */
+    public function distinct()
+    {
+        $uniqueRawValues = array_values(
+            array_unique(
+                $this->map(
+                    fn(SnFloat $value) => $value->toFloat()
+                )->toArray()
+            )
+        );
+        return static::byFloatArray($uniqueRawValues);
+    }
 }

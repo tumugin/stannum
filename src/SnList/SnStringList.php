@@ -6,6 +6,7 @@ namespace Tumugin\Stannum\SnList;
 
 use Assert\Assertion;
 use Assert\AssertionFailedException;
+use Tumugin\Stannum\SnBaseValue;
 use Tumugin\Stannum\SnString;
 
 /**
@@ -90,5 +91,23 @@ class SnStringList extends SnBaseValueArray
         return $this
             ->map(fn(SnString $s) => $s->toString())
             ->toArray();
+    }
+
+    /**
+     * Returns the unique list
+     *
+     * @return static
+     * @throws AssertionFailedException
+     */
+    public function distinct()
+    {
+        $uniqueRawValues = array_values(
+            array_unique(
+                $this->map(
+                    fn(SnString $value) => $value->toString()
+                )->toArray()
+            )
+        );
+        return static::byStringArray($uniqueRawValues);
     }
 }

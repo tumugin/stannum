@@ -77,4 +77,21 @@ class SnIntegerList extends SnNumericList
             ->map(fn(SnInteger $v) => $v->toInt())
             ->toArray();
     }
+
+    /**
+     * Returns the unique list
+     *
+     * @return static
+     */
+    public function distinct()
+    {
+        $uniqueRawValues = array_values(
+            array_unique(
+                $this->map(
+                    fn(SnInteger $value) => $value->toInt()
+                )->toArray()
+            )
+        );
+        return static::byIntArray($uniqueRawValues);
+    }
 }
