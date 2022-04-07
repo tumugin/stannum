@@ -213,10 +213,11 @@ class SnString extends SnBaseValue
      */
     public function split($separator): SnStringList
     {
-        if ($separator->value === '') {
+        $rawSeparatorValue = is_string($separator) ? $separator : $separator->value;
+        if($rawSeparatorValue === ''){
             throw new \RuntimeException('SnString: separator value must not be empty.');
         }
-        return SnStringList::byStringArray(explode($separator->value, $this->value));
+        return SnStringList::byStringArray(explode($rawSeparatorValue, $this->value));
     }
 
     /**
