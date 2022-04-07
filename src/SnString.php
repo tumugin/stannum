@@ -319,11 +319,11 @@ class SnString extends SnBaseValue
     /**
      * Search for string with regular expressions and returns the result.
      *
-     * @param SnString $regex Regular expression to search
+     * @param SnString|string $regex Regular expression to search
      * @return SnPregMatchResult|null Will return null if nothing matches
      * @throws AssertionFailedException
      */
-    public function pregMatchAll(self $regex): ?SnPregMatchResult
+    public function pregMatchAll($regex): ?SnPregMatchResult
     {
         $rawRegexValue = is_string($regex) ? $regex : $regex->value;
 
