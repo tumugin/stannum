@@ -90,37 +90,41 @@ class SnString extends SnBaseValue
     /**
      * Returns specified value is same as it.
      *
-     * @param SnString $value Value compared with it
+     * @param SnString|string $value Value compared with it
      */
-    public function equals(self $value): bool
+    public function equals($value): bool
     {
-        return $this->value === $value->value;
+        $rawValue = is_string($value) ? $value : $value->value;
+        return $this->value === $rawValue;
     }
 
     /**
      * Concat specified value and return new SnString instance.
      *
-     * @param SnString $value Value to be combined
+     * @param SnString|string $value Value to be combined
      * @return static
      */
-    public function concat(self $value)
+    public function concat($value)
     {
-        return new static($this->value . $value->value);
+        $rawValue = is_string($value) ? $value : $value->value;
+        return new static($this->value . $rawValue);
     }
 
     /**
      * Returns whether the specified value is included or not.
      *
-     * @param SnString $needle Value to search for
+     * @param SnString|string $needle Value to search for
      */
-    public function contains(self $needle): bool
+    public function contains($needle): bool
     {
+        $rawNeedleValue = is_string($needle) ? $needle : $needle->value;
+
         // workaround: PHP7.4 with empty needle will return error
-        if ($needle->value === '') {
+        if ($rawNeedleValue === '') {
             return true;
         }
 
-        return mb_strpos($this->value, $needle->value) !== false;
+        return mb_strpos($this->value, $rawNeedleValue) !== false;
     }
 
     /**
@@ -193,15 +197,16 @@ class SnString extends SnBaseValue
     /**
      * Split string with specified separator
      *
-     * @param SnString $separator The string to separete with
+     * @param SnString|string $separator The string to separete with
      * @throws AssertionFailedException
      */
-    public function split(self $separator): SnStringList
+    public function split($separator): SnStringList
     {
-        if ($separator->value === '') {
+        $rawSeparatorValue = is_string($separator) ? $separator : $separator->value;
+        if ($rawSeparatorValue === '') {
             throw new \RuntimeException('SnString: separator value must not be empty.');
         }
-        return SnStringList::byStringArray(explode($separator->value, $this->value));
+        return SnStringList::byStringArray(explode($rawSeparatorValue, $this->value));
     }
 
     /**
@@ -230,50 +235,59 @@ class SnString extends SnBaseValue
     /**
      * Returns whether or not the string ends with the specified character.
      *
-     * @param SnString $needle String to be determined
+     * @param SnString|string $needle String to be determined
      */
-    public function endsWith(self $needle): bool
+    public function endsWith($needle): bool
     {
-        return mb_substr($this->value, -mb_strlen($needle->value)) === $needle->value;
+        $rawNeedleValue = is_string($needle) ? $needle : $needle->value;
+        return mb_substr($this->value, -mb_strlen($rawNeedleValue)) === $rawNeedleValue;
     }
 
     /**
      * Returns whether or not the string starts with the specified string.
      *
-     * @param SnString $needle String to be determined
+     * @param SnString|string $needle String to be determined
      */
-    public function startsWith(self $needle): bool
+    public function startsWith($needle): bool
     {
+        $rawNeedleValue = is_string($needle) ? $needle : $needle->value;
+
         // workaround: PHP7.4 with empty needle will return error
-        if ($needle->value === '') {
+        if ($rawNeedleValue === '') {
             return true;
         }
 
-        return mb_strpos($this->value, $needle->value) === 0;
+        return mb_strpos($this->value, $rawNeedleValue) === 0;
     }
 
     /**
      * Search for the specified string and replace it with the specified string.
      *
-     * @param SnString $search String to search
-     * @param SnString $replace String to be replaced
+     * @param SnString|string $search String to search
+     * @param SnString|string $replace String to be replaced
      * @return static
      */
-    public function replace(self $search, self $replace)
+    public function replace($search, $replace)
     {
-        return new static(str_replace($search->value, $replace->value, $this->value));
+        $rawSearchValue = is_string($search) ? $search : $search->value;
+        $rawReplaceValue = is_string($replace) ? $replace : $replace->value;
+
+        return new static(str_replace($rawSearchValue, $rawReplaceValue, $this->value));
     }
 
     /**
      * Search for strings with regular expressions and replace them with the specified strings.
      *
-     * @param SnString $regex Regular expression to search
-     * @param SnString $replace String to be replaced
+     * @param SnString|string $regex Regular expression to search
+     * @param SnString|string $replace String to be replaced
      * @return static
      */
-    public function pregReplace(self $regex, self $replace)
+    public function pregReplace($regex, $replace)
     {
-        $preg_replace_result = preg_replace($regex->value, $replace->value, $this->value);
+        $rawRegexValue = is_string($regex) ? $regex : $regex->value;
+        $rawReplaceValue = is_string($replace) ? $replace : $replace->value;
+
+        $preg_replace_result = preg_replace($rawRegexValue, $rawReplaceValue, $this->value);
         if ($preg_replace_result === null) {
             throw new \RuntimeException('SnString: preg_replace error occurred.');
         }
@@ -284,11 +298,13 @@ class SnString extends SnBaseValue
     /**
      * Search for string with regular expressions and returns matches or not.
      *
-     * @param SnString $regex Regular expression to search
+     * @param SnString|string $regex Regular expression to search
      */
-    public function pregMatches(self $regex): bool
+    public function pregMatches($regex): bool
     {
-        $preg_match_result = preg_match($regex->value, $this->value);
+        $rawRegexValue = is_string($regex) ? $regex : $regex->value;
+
+        $preg_match_result = preg_match($rawRegexValue, $this->value);
         if ($preg_match_result === false) {
             throw new \RuntimeException('SnString: preg_match error occurred.');
         }
@@ -299,14 +315,16 @@ class SnString extends SnBaseValue
     /**
      * Search for string with regular expressions and returns the result.
      *
-     * @param SnString $regex Regular expression to search
-     * @throws AssertionFailedException
+     * @param SnString|string $regex Regular expression to search
      * @return SnPregMatchResult|null Will return null if nothing matches
+     * @throws AssertionFailedException
      */
-    public function pregMatchAll(self $regex): ?SnPregMatchResult
+    public function pregMatchAll($regex): ?SnPregMatchResult
     {
+        $rawRegexValue = is_string($regex) ? $regex : $regex->value;
+
         $result_array = [];
-        $preg_match_result = preg_match($regex->value, $this->value, $result_array);
+        $preg_match_result = preg_match($rawRegexValue, $this->value, $result_array);
 
         if ($preg_match_result === false) {
             throw new \RuntimeException('SnString: preg_match error occurred.');
