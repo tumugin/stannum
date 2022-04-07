@@ -59,50 +59,65 @@ abstract class SnNumeric extends SnBaseValue
     /**
      * Returns the passed SnNumeric value is same as is.
      *
-     * @param self $value The SnNumeric it will be compared.
+     * @param self|int|float $value The SnNumeric or raw numeric value that will be compared.
      */
-    public function isEqual(self $value): bool
+    public function isEqual($value): bool
     {
+        if (is_int($value) || is_float($value)) {
+            return $this->value === $value;
+        }
         return $this->value === $value->value;
     }
 
     /**
      * Returns the passed SnNumeric value is greater or equal than self.
      *
-     * @param self $value The SnNumeric it will be compared.
+     * @param self|int|float $value The SnNumeric it will be compared.
      */
-    public function isGreaterOrEqualThan(self $value): bool
+    public function isGreaterOrEqualThan($value): bool
     {
+        if (is_int($value) || is_float($value)) {
+            return $this->value === $value;
+        }
         return $this->value >= $value->value;
     }
 
     /**
      * Returns the passed SnNumeric value is greater than self.
      *
-     * @param self $value The SnNumeric it will be compared.
+     * @param self|int|float $value The SnNumeric it will be compared.
      */
-    public function isGreaterThan(self $value): bool
+    public function isGreaterThan($value): bool
     {
+        if (is_int($value) || is_float($value)) {
+            return $this->value === $value;
+        }
         return $this->value > $value->value;
     }
 
     /**
      * Returns the passed SnNumeric value is less or equal than self.
      *
-     * @param self $value The SnNumeric it will be compared.
+     * @param self|int|float $value The SnNumeric it will be compared.
      */
-    public function isLessOrEqualThan(self $value): bool
+    public function isLessOrEqualThan($value): bool
     {
+        if (is_int($value) || is_float($value)) {
+            return $this->value === $value;
+        }
         return $this->value <= $value->value;
     }
 
     /**
      * Returns the passed SnNumeric value is less than self.
      *
-     * @param self $value The SnNumeric it will be compared.
+     * @param self|int|float $value The SnNumeric it will be compared.
      */
-    public function isLessThan(self $value): bool
+    public function isLessThan($value): bool
     {
+        if (is_int($value) || is_float($value)) {
+            return $this->value === $value;
+        }
         return $this->value < $value->value;
     }
 

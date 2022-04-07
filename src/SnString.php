@@ -90,31 +90,46 @@ class SnString extends SnBaseValue
     /**
      * Returns specified value is same as it.
      *
-     * @param SnString $value Value compared with it
+     * @param SnString|string $value Value compared with it
      */
-    public function equals(self $value): bool
+    public function equals($value): bool
     {
+        if (is_string($value)) {
+            return $this->value === $value;
+        }
         return $this->value === $value->value;
     }
 
     /**
      * Concat specified value and return new SnString instance.
      *
-     * @param SnString $value Value to be combined
+     * @param SnString|string $value Value to be combined
      * @return static
      */
-    public function concat(self $value)
+    public function concat($value)
     {
+        if (is_string($value)) {
+            return new static($this->value . $value);
+        }
         return new static($this->value . $value->value);
     }
 
     /**
      * Returns whether the specified value is included or not.
      *
-     * @param SnString $needle Value to search for
+     * @param SnString|string $needle Value to search for
      */
-    public function contains(self $needle): bool
+    public function contains($needle): bool
     {
+        if (is_string($needle)) {
+            // workaround: PHP7.4 with empty needle will return error
+            if ($needle === '') {
+                return true;
+            }
+
+            return mb_strpos($this->value, $needle) !== false;
+        }
+
         // workaround: PHP7.4 with empty needle will return error
         if ($needle->value === '') {
             return true;
@@ -193,10 +208,10 @@ class SnString extends SnBaseValue
     /**
      * Split string with specified separator
      *
-     * @param SnString $separator The string to separete with
+     * @param SnString|string $separator The string to separete with
      * @throws AssertionFailedException
      */
-    public function split(self $separator): SnStringList
+    public function split($separator): SnStringList
     {
         if ($separator->value === '') {
             throw new \RuntimeException('SnString: separator value must not be empty.');
@@ -300,8 +315,8 @@ class SnString extends SnBaseValue
      * Search for string with regular expressions and returns the result.
      *
      * @param SnString $regex Regular expression to search
-     * @throws AssertionFailedException
      * @return SnPregMatchResult|null Will return null if nothing matches
+     * @throws AssertionFailedException
      */
     public function pregMatchAll(self $regex): ?SnPregMatchResult
     {
