@@ -94,10 +94,8 @@ class SnString extends SnBaseValue
      */
     public function equals($value): bool
     {
-        if (is_string($value)) {
-            return $this->value === $value;
-        }
-        return $this->value === $value->value;
+        $rawValue = is_string($value) ? $value : $value->value;
+        return $this->value === $rawValue;
     }
 
     /**
@@ -108,10 +106,8 @@ class SnString extends SnBaseValue
      */
     public function concat($value)
     {
-        if (is_string($value)) {
-            return new static($this->value . $value);
-        }
-        return new static($this->value . $value->value);
+        $rawValue = is_string($value) ? $value : $value->value;
+        return new static($this->value . $rawValue);
     }
 
     /**

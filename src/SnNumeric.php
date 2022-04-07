@@ -63,10 +63,8 @@ abstract class SnNumeric extends SnBaseValue
      */
     public function isEqual($value): bool
     {
-        if (is_int($value) || is_float($value)) {
-            return $this->value === $value;
-        }
-        return $this->value === $value->value;
+        $rawValue = is_int($value) || is_float($value) ? $value : $value->value;
+        return $this->value === $rawValue;
     }
 
     /**
@@ -76,10 +74,8 @@ abstract class SnNumeric extends SnBaseValue
      */
     public function isGreaterOrEqualThan($value): bool
     {
-        if (is_int($value) || is_float($value)) {
-            return $this->value === $value;
-        }
-        return $this->value >= $value->value;
+        $rawValue = is_int($value) || is_float($value) ? $value : $value->value;
+        return $this->value >= $rawValue;
     }
 
     /**
@@ -89,10 +85,8 @@ abstract class SnNumeric extends SnBaseValue
      */
     public function isGreaterThan($value): bool
     {
-        if (is_int($value) || is_float($value)) {
-            return $this->value === $value;
-        }
-        return $this->value > $value->value;
+        $rawValue = is_int($value) || is_float($value) ? $value : $value->value;
+        return $this->value > $rawValue;
     }
 
     /**
@@ -102,10 +96,8 @@ abstract class SnNumeric extends SnBaseValue
      */
     public function isLessOrEqualThan($value): bool
     {
-        if (is_int($value) || is_float($value)) {
-            return $this->value === $value;
-        }
-        return $this->value <= $value->value;
+        $rawValue = is_int($value) || is_float($value) ? $value : $value->value;
+        return $this->value <= $rawValue;
     }
 
     /**
@@ -115,10 +107,8 @@ abstract class SnNumeric extends SnBaseValue
      */
     public function isLessThan($value): bool
     {
-        if (is_int($value) || is_float($value)) {
-            return $this->value === $value;
-        }
-        return $this->value < $value->value;
+        $rawValue = is_int($value) || is_float($value) ? $value : $value->value;
+        return $this->value < $rawValue;
     }
 
     /**
