@@ -1,3 +1,9 @@
+# 0.6.0
+- Add split to SnString(https://github.com/tumugin/stannum/pull/49)
+- Fixed wrong return type of SnList map function(https://github.com/tumugin/stannum/pull/50)
+- Fixed distinct functions(https://github.com/tumugin/stannum/pull/51)
+- Add union types on SnString and SnNumeric APIs to use raw value params(https://github.com/tumugin/stannum/pull/52)
+
 # 0.5.0
 - Fixed issue SnStringList::byStringArray not working
 - Added `toStringArray` to SnStringList
